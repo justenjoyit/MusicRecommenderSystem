@@ -4,4 +4,29 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <!--Spring配置文件位置及listener 开始-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:conf/spring-config.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!--Spring配置文件位置及listener 结束-->
+
+  <!--Servlet配置文件入口及编码 开始-->
+  <servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:conf/spring-mvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <!--Servlet配置文件入口及编码 结束-->
 </web-app>
