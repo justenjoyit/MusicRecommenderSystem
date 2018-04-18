@@ -23,4 +23,16 @@
         VALUES (#{username},#{password},#{email},#{lastLogin},#{status})
     </insert>
 
+    <update id="updateLastLogin">
+        UPDATE user
+        SET
+          lastLogin = #{param2}
+        WHERE
+          id = #{param1}
+    </update>
+
+    <select id="getUser" resultMap="userResult">
+        SELECT * FROM user
+        WHERE email = #{param1} AND password = #{param2}
+    </select>
 </mapper>
