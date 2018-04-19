@@ -15,7 +15,7 @@ public interface UserDao {
 
     void save(User user);
 
-    void updateLastLogin(User user, Date now);
+    void updateLastLogin(int id, Date now);
 
     User getUser(String email, String password);
 }

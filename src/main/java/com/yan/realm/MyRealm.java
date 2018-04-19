@@ -37,7 +37,7 @@ public class MyRealm extends AuthorizingRealm {
             throw new AccountException();
 
         Date now = new Date();
-        userDao.updateLastLogin(user, now);
+        userDao.updateLastLogin(user.getId(), now);
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getEmail(), authenticationToken.getCredentials(), getName());
         return authenticationInfo;
