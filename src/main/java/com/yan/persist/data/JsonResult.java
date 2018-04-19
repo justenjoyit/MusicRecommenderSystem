@@ -10,7 +10,7 @@ public class JsonResult {
 
     private String errorCode;   //0：通过 1：失败
     private String message;
-    private List<Object> data;
+    private List<? extends Object> data;
 
     public JsonResult() {
         this.errorCode = "1";
@@ -33,11 +33,11 @@ public class JsonResult {
         this.message = message;
     }
 
-    public List<Object> getData() {
+    public List<? extends Object> getData() {
         return data;
     }
 
-    public void setData(List<Object> data) {
+    public void setData(List<? extends Object> data) {
         this.data = data;
     }
 

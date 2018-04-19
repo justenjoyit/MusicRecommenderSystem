@@ -47,4 +47,10 @@
     <!--事务注解开启 开始-->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
     <!--事务注解开启 结束-->
+
+    <!--aop相关配置 开始-->
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+    <bean id="aspectBean" class="com.yan.aop.ApiMonitor"/>
+    <!--aop相关配置 结束-->
+
 </beans>
