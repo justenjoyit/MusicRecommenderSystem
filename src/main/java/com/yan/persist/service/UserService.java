@@ -8,4 +8,8 @@ import com.yan.persist.entity.User;
 public interface UserService {
 
     User register(User post);
+
+    void updateStatus(User post);
+
+    void deleteUser(User post);
 }

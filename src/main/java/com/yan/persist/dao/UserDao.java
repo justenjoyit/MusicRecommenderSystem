@@ -18,4 +18,8 @@ public interface UserDao {
     void updateLastLogin(int id, Date now);
 
     User getUser(String email, String password);
+
+    void updateStatus(User user);
+
+    void deleteUser(User user);
 }

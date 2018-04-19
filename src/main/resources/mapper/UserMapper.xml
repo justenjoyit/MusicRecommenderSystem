@@ -35,4 +35,17 @@
         SELECT * FROM user
         WHERE email = #{param1} AND password = #{param2}
     </select>
+
+    <update id="updateStatus" parameterType="User">
+        UPDATE user
+        SET
+          status = #{status}
+        WHERE
+          email = #{email}
+    </update>
+
+    <delete id="deleteUser" parameterType="User">
+        DELETE FROM user
+        WHERE email = #{email}
+    </delete>
 </mapper>
