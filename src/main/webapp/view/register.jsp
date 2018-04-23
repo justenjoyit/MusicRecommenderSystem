@@ -34,7 +34,7 @@
     <script src="js/video.min.js"></script>
     <script src="js/module_shoppingCart.min.js"></script>
 
-    <title>-</title>
+    <title>注册</title>
 
     <meta id="_TOKEN" value="6c8b68f59d1bfaeeff3b64376fc4ebde">
 
@@ -926,9 +926,6 @@
 
                         </div>
 
-
-                        <div class="u-footerResize-n" title="可拖动调节间距"></div>
-                        <div class="u-footerResize-s" title="可拖动调节间距"></div>
                     </div>
 
                 </td>
