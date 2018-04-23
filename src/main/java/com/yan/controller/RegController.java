@@ -5,10 +5,7 @@ import com.yan.persist.entity.User;
 import com.yan.persist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by YZT on 2018/4/17.
@@ -19,9 +16,15 @@ public class RegController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/reg",method = RequestMethod.GET)
+    public String index(){
+        return "register";
+    }
+
     @RequestMapping(value = "/reg", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult reg(@RequestBody User post) {
+        System.out.println(post);
         JsonResult jsonResult = new JsonResult();
         try{
             //注册保存到数据库
