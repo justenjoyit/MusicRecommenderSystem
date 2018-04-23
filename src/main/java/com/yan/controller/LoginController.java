@@ -23,20 +23,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String index() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult login(@RequestBody User post){
+    public JsonResult login(@RequestBody User post) {
+        System.out.println(post);
         JsonResult jsonResult = new JsonResult();
 
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(post.getEmail(), MD5.md5(post.getPassword()));
-        try{
+        try {
             currentUser.login(token);
-        }catch (UnknownAccountException ue){
+        } catch (UnknownAccountException ue) {
             jsonResult.setErrorCode("1");
             jsonResult.setMessage("账户不存在或用户名或密码错误");
             return jsonResult;
-        }catch (AccountException ae){
+        } catch (AccountException ae) {
             jsonResult.setErrorCode("1");
             jsonResult.setMessage("邮箱未激活");
             return jsonResult;
