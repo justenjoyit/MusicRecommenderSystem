@@ -4,16 +4,16 @@ package com.yan.crawler;
  * Created by YZT on 2018/5/1.
  */
 public class Tag {
-    private int count;
+    private int id;
     private String name;
-    private String url;
+    private int count;
 
-    public int getCount() {
-        return count;
+    public int getId() {
+        return id;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -24,20 +24,20 @@ public class Tag {
         this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public int getCount() {
+        return count;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setCount(int count) {
+        this.count = count;
     }
 
     @Override
     public String toString() {
         return "Tag{" +
-                "count=" + count +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                ", count=" + count +
                 '}';
     }
 }

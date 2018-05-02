@@ -172,16 +172,12 @@ public class ReadXMLByDom {
                     String content = cNode.getFirstChild().getTextContent();
                     String nodeName = cNode.getNodeName();
                     switch (nodeName) {
-                        case "count": {
-                            tag.setCount(Integer.valueOf(content));
-                            break;
-                        }
                         case "name": {
                             tag.setName(content);
                             break;
                         }
-                        case "url": {
-                            tag.setUrl(content);
+                        case "count":{
+                            tag.setCount(Integer.valueOf(content));
                             break;
                         }
                     }

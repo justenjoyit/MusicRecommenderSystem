@@ -10,13 +10,22 @@
         <result property="mbid" column="mbid"/>
         <result property="url" column="url"/>
         <result property="images" column="images"/>
+        <result property="tags" column="tags"/>
     </resultMap>
 
     <insert id="insert">
-        INSERT INTO track(artist,name,mbid,url,images)
+        INSERT IGNORE INTO track(artist,name,mbid,url,images)
         VALUES 
         <foreach collection="list" item="track" index="index" separator=",">
             (#{track.artist},#{track.name},#{track.mbid},#{track.url},#{track.images})
         </foreach>
     </insert>
+
+    <update id="updateTag">
+        UPDATE track
+        SET
+            tags = #{param3}
+        WHERE
+            artist = #{param1} AND name = #{param2}
+    </update>
 </mapper>

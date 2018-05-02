@@ -12,6 +12,7 @@ public class Track {
     private String mbid;
     private String url;
     private String images;
+    private String tags;
 
     public int getId() {
         return id;
@@ -59,6 +60,14 @@ public class Track {
 
     public void setImages(String images) {
         this.images = images;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     //    public ArrayList<String> getImages() {
