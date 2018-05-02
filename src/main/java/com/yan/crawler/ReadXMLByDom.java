@@ -3,12 +3,16 @@ package com.yan.crawler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +35,11 @@ public class ReadXMLByDom {
         }
     }
 
-    public static List<User> getUsers(String fileName) throws IOException, SAXException {
-        List<User> users = null;
-        document = db.parse(fileName);
+    public static List<User> getUsers(String xml) throws IOException, SAXException {
+        List<User> users = new ArrayList<User>();
+        InputStream is = new ByteArrayInputStream(xml.getBytes());
+        document = db.parse(is);
         NodeList userList = document.getElementsByTagName("user");
-        users = new ArrayList<User>();
         for (int i = 0; i < userList.getLength(); ++i) {
             User user = new User();
             Node node = userList.item(i);
@@ -107,8 +111,9 @@ public class ReadXMLByDom {
         return users;
     }
 
-    public static List<Track> getTracks(String fileName) throws IOException, SAXException {
-        document = db.parse(fileName);
+    public static List<Track> getTracks(String xml) throws IOException, SAXException {
+        InputStream is = new ByteArrayInputStream(xml.getBytes());
+        document = db.parse(is);
         NodeList trackList = document.getElementsByTagName("track");
         List<Track> tracks = new ArrayList<Track>();
         for (int i = 0; i < trackList.getLength(); ++i) {
@@ -150,8 +155,9 @@ public class ReadXMLByDom {
         return tracks;
     }
 
-    public static List<Tag> getTags(String fileName) throws IOException, SAXException {
-        document = db.parse(fileName);
+    public static List<Tag> getTags(String xml) throws IOException, SAXException {
+        InputStream is = new ByteArrayInputStream(xml.getBytes());
+        document = db.parse(is);
         NodeList trackList = document.getElementsByTagName("tag");
         List<Tag> tags = new ArrayList<Tag>();
         for (int i = 0; i < trackList.getLength(); ++i) {
