@@ -44,6 +44,7 @@ public class ReadXMLByDom {
             User2 user2 = new User2();
             Node node = userList.item(i);
             NodeList cList = node.getChildNodes();
+            ArrayList<String> images = new ArrayList<>();
             for (int j = 0; j < cList.getLength(); j += 2) {
                 Node cNode = cList.item(j);
                 if (cNode.getFirstChild() != null) {
@@ -55,11 +56,11 @@ public class ReadXMLByDom {
                             break;
                         }
                         case "realname": {
-                            user2.setRealName(content);
+                            user2.setRealname(content);
                             break;
                         }
                         case "image": {
-                            user2.addImage(content);
+                            images.add(content);
                             break;
                         }
                         case "url": {
@@ -106,6 +107,7 @@ public class ReadXMLByDom {
                 }
 
             }
+            user2.setImages(JSONArray.toJSONString(images));
             user2s.add(user2);
         }
         return user2s;

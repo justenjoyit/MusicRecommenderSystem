@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class User2 {
     private String name;
-    private String realName;
-    private ArrayList<String> images;
+    private String realname;
+    private String images;
     private String url;
     private String country;
     private int age;
@@ -28,27 +28,22 @@ public class User2 {
         this.name = name;
     }
 
-    public String getRealName() {
-        return realName;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
-    public ArrayList<String> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 
-    public void addImage(String image){
-        if(images == null)
-            images = new ArrayList<>();
-        images.add(image);
-    }
     public String getUrl() {
         return url;
     }
@@ -133,8 +128,8 @@ public class User2 {
     public String toString() {
         return "User2{" +
                 "name='" + name + '\'' +
-                ", realName='" + realName + '\'' +
-                ", images=" + images +
+                ", realname='" + realname + '\'' +
+                ", images='" + images + '\'' +
                 ", url='" + url + '\'' +
                 ", country='" + country + '\'' +
                 ", age=" + age +

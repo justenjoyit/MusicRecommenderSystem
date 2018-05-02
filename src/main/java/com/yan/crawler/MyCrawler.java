@@ -3,6 +3,7 @@ package com.yan.crawler;
 import com.alibaba.fastjson.JSONArray;
 import com.yan.crawler.persist.dao.TagDao;
 import com.yan.crawler.persist.dao.TrackDao;
+import com.yan.crawler.persist.dao.User2Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xml.sax.SAXException;
@@ -29,6 +30,8 @@ public class MyCrawler {
     private TrackDao trackDao;
     @Autowired
     private TagDao tagDao;
+    @Autowired
+    private User2Dao user2Dao;
 
     //通过Get获取数据
     public static String sendGet(String url) {
@@ -85,10 +88,18 @@ public class MyCrawler {
         tagDao.insert(tagList);
     }
 
+    /**
+     * 通过username找到他的朋友
+     *
+     * @param username
+     * @throws IOException
+     * @throws SAXException
+     */
     public void getUserFriend(String username) throws IOException, SAXException {
-        String url = USER_FRIEND + username;
+        String url = USER_FRIEND + username + API_KEY;
         String result = sendGet(url);
         List<User2> user2List = ReadXMLByDom.getUsers(result);
         //保存到数据库
+        user2Dao.insert(user2List);
     }
 }
