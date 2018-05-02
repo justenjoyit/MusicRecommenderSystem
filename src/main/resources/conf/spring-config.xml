@@ -46,7 +46,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yan.persist.dao"/>
+        <property name="basePackage" value="com.yan.persist.dao,com.yan.crawler.persist.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 

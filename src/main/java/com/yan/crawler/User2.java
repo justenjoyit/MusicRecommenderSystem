@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by YZT on 2018/5/1.
  */
-public class User {
+public class User2 {
     private String name;
     private String realName;
     private ArrayList<String> images;
@@ -131,7 +131,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User2{" +
                 "name='" + name + '\'' +
                 ", realName='" + realName + '\'' +
                 ", images=" + images +

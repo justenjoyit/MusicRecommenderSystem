@@ -1,5 +1,8 @@
 package com.yan.crawler;
 
+import com.yan.crawler.persist.dao.TrackDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
@@ -12,12 +15,16 @@ import java.util.List;
 /**
  * Created by YZT on 2018/5/1.
  */
+@Repository
 public class MyCrawler {
 
     private final String RECENT_TRACK = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=";
     private final String TRACK_TAG = "http://ws.audioscrobbler.com/2.0/?method=track.gettoptags&artist=";
     private final String USER_FRIEND = "http://ws.audioscrobbler.com/2.0/?method=user.getfriends&user=";
     private final String API_KEY = "&api_key=b25b959554ed76058ac220b7b2e0a026";
+
+    @Autowired
+    private TrackDao trackDao;
 
     //通过Get获取数据
     public static String sendGet(String url) {
@@ -56,7 +63,7 @@ public class MyCrawler {
         String result = sendGet(url);
         List<Track> trackList = ReadXMLByDom.getTracks(result);
         //保存到数据库
-
+        trackDao.insert(trackList);
     }
 
     /**
@@ -75,7 +82,7 @@ public class MyCrawler {
     public void getUserFriend(String username) throws IOException, SAXException {
         String url = USER_FRIEND + username;
         String result = sendGet(url);
-        List<User> userList = ReadXMLByDom.getUsers(result);
+        List<User2> user2List = ReadXMLByDom.getUsers(result);
         //保存到数据库
     }
 }

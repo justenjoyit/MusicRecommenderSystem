@@ -1,9 +1,10 @@
 package com.yan.crawler;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -12,7 +13,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +35,13 @@ public class ReadXMLByDom {
         }
     }
 
-    public static List<User> getUsers(String xml) throws IOException, SAXException {
-        List<User> users = new ArrayList<User>();
+    public static List<User2> getUsers(String xml) throws IOException, SAXException {
+        List<User2> user2s = new ArrayList<User2>();
         InputStream is = new ByteArrayInputStream(xml.getBytes());
         document = db.parse(is);
         NodeList userList = document.getElementsByTagName("user");
         for (int i = 0; i < userList.getLength(); ++i) {
-            User user = new User();
+            User2 user2 = new User2();
             Node node = userList.item(i);
             NodeList cList = node.getChildNodes();
             for (int j = 0; j < cList.getLength(); j += 2) {
@@ -51,64 +51,64 @@ public class ReadXMLByDom {
                     String nodeName = cNode.getNodeName();
                     switch (nodeName) {
                         case "name": {
-                            user.setName(content);
+                            user2.setName(content);
                             break;
                         }
                         case "realname": {
-                            user.setRealName(content);
+                            user2.setRealName(content);
                             break;
                         }
                         case "image": {
-                            user.addImage(content);
+                            user2.addImage(content);
                             break;
                         }
                         case "url": {
-                            user.setUrl(content);
+                            user2.setUrl(content);
                             break;
                         }
                         case "country": {
-                            user.setCountry(content);
+                            user2.setCountry(content);
                             break;
                         }
                         case "age": {
-                            user.setAge(Integer.valueOf(content));
+                            user2.setAge(Integer.valueOf(content));
                             break;
                         }
                         case "gender": {
-                            user.setGender(content);
+                            user2.setGender(content);
                             break;
                         }
                         case "subscriber": {
-                            user.setSubscriber(content);
+                            user2.setSubscriber(content);
                             break;
                         }
                         case "playcount": {
-                            user.setPlaycount(Integer.valueOf(content));
+                            user2.setPlaycount(Integer.valueOf(content));
                             break;
                         }
                         case "playlists": {
-                            user.setPlaylists(Integer.valueOf(content));
+                            user2.setPlaylists(Integer.valueOf(content));
                             break;
                         }
                         case "bootstrap": {
-                            user.setBootstrap(Integer.valueOf(content));
+                            user2.setBootstrap(Integer.valueOf(content));
                             break;
                         }
                         case "registered": {
-                            user.setRegistered(content);
+                            user2.setRegistered(content);
                             break;
                         }
                         case "alumni": {
-                            user.setAlumni(content);
+                            user2.setAlumni(content);
                             break;
                         }
                     }
                 }
 
             }
-            users.add(user);
+            user2s.add(user2);
         }
-        return users;
+        return user2s;
     }
 
     public static List<Track> getTracks(String xml) throws IOException, SAXException {
@@ -120,6 +120,7 @@ public class ReadXMLByDom {
             Track track = new Track();
             Node node = trackList.item(i);
             NodeList cList = node.getChildNodes();
+            ArrayList<String> images = new ArrayList<>();
             for (int j = 0; j < cList.getLength(); j += 2) {
                 Node cNode = cList.item(j);
                 if (cNode.getFirstChild() != null) {
@@ -143,13 +144,14 @@ public class ReadXMLByDom {
                             break;
                         }
                         case "image": {
-                            track.addImage(content);
+                            images.add(content);
                             break;
                         }
                     }
                 }
 
             }
+            track.setImages(JSONArray.toJSONString(images));
             tracks.add(track);
         }
         return tracks;

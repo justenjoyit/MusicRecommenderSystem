@@ -5,5 +5,6 @@
 <configuration>
     <typeAliases>
         <package name="com.yan.persist.entity"/>
+        <package name="com.yan.crawler"/>
     </typeAliases>
 </configuration>

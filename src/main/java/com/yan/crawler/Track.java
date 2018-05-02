@@ -6,11 +6,20 @@ import java.util.ArrayList;
  * Created by YZT on 2018/5/1.
  */
 public class Track {
+    private int id;
     private String artist;
     private String name;
     private String mbid;
     private String url;
-    private ArrayList<String> images;
+    private String images;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getArtist() {
         return artist;
@@ -44,19 +53,27 @@ public class Track {
         this.url = url;
     }
 
-    public ArrayList<String> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 
-    public void addImage(String image) {
-        if (images == null)
-            images = new ArrayList<>();
-        images.add(image);
-    }
+    //    public ArrayList<String> getImages() {
+//        return images;
+//    }
+
+//    public void setImages(ArrayList<String> images) {
+//        this.images = images;
+//    }
+//
+//    public void addImage(String image) {
+//        if (images == null)
+//            images = new ArrayList<>();
+//        images.add(image);
+//    }
 
     @Override
     public String toString() {
