@@ -3,11 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.crawler.persist.dao.User2Dao">
+    <resultMap id="user2Result" type="User2">
+
+    </resultMap>
+
     <insert id="insert">
-        INSERT IGNORE INTO user2(name,realname,images,url,country,age,gender,subscriber,playcount,playlists,bootstrap,registered,alumni)
+        INSERT IGNORE INTO
+        user2(name,realname,images,url,country,age,gender,subscriber,playcount,playlists,bootstrap,registered,alumni)
         VALUES
         <foreach collection="users" item="user" separator=",">
             (#{user.name},#{user.realname},#{user.images},#{user.url},#{user.country},#{user.age},#{user.gender},#{user.subscriber},#{user.playcount},#{user.playlists},#{user.bootstrap},#{user.registered},#{user.alumni})
         </foreach>
     </insert>
+
+    <select id="getUser2" resultMap="user2Result">
+        SELECT * FROM user2 LIMIT #{index},20
+    </select>
 </mapper>

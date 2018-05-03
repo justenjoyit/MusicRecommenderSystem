@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface User2Dao {
     void insert(@Param("users")List<User2> users);
+    List<User2> getUser2(int index);
 }

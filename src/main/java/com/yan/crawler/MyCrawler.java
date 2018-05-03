@@ -66,11 +66,16 @@ public class MyCrawler {
      * @param username
      */
     public void getRecentTrack(String username) throws IOException, SAXException {
-        String url = RECENT_TRACK + username + API_KEY;
+        String newUsername = username.replaceAll(" ", "+");
+        String url = RECENT_TRACK + newUsername + API_KEY;
         String result = sendGet(url);
         List<Track> trackList = ReadXMLByDom.getTracks(result);
-        //保存到数据库
-        trackDao.insert(trackList);
+        //保存到track
+        if (trackList.size() != 0) {
+            trackDao.insert(trackList);
+            //将用户和其最近收听轨道的关系保存到user_track
+            trackDao.insertUserTrack(username, trackList);
+        }
     }
 
     /**
@@ -80,12 +85,15 @@ public class MyCrawler {
      * @param track
      */
     public void getTrackTag(String artist, String track) throws IOException, SAXException {
-        String url = TRACK_TAG + artist + "&track=" + track + API_KEY;
+        String newArtist = artist.replaceAll(" ", "+");
+        String newTrack = track.replaceAll(" ", "+");
+        String url = TRACK_TAG + newArtist + "&track=" + newTrack + API_KEY;
         String result = sendGet(url);
         List<Tag> tagList = ReadXMLByDom.getTags(result);
-        //保存到数据库
+        //更新track表，将新标签保存到tag表
         trackDao.updateTag(artist, track, JSONArray.toJSONString(tagList));
-        tagDao.insert(tagList);
+        if (tagList.size() != 0)
+            tagDao.insert(tagList);
     }
 
     /**
@@ -96,10 +104,67 @@ public class MyCrawler {
      * @throws SAXException
      */
     public void getUserFriend(String username) throws IOException, SAXException {
-        String url = USER_FRIEND + username + API_KEY;
+        String newUsername = username.replaceAll(" ", "+");
+        String url = USER_FRIEND + newUsername + API_KEY;
         String result = sendGet(url);
         List<User2> user2List = ReadXMLByDom.getUsers(result);
-        //保存到数据库
-        user2Dao.insert(user2List);
+        //保存到user2
+        if (user2List.size() != 0)
+            user2Dao.insert(user2List);
+    }
+
+    /**
+     * 正式爬取
+     * 一个线程getUserInfoThread用来获取用户及其最近听取的列表
+     * 另一个线程getTrackInfoThread用来获取数据库中轨道的标签
+     */
+    public void crawl() throws InterruptedException {
+        final Thread getUserInfoThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int userIndex = 0;
+                while (userIndex <= 1000) {
+                    //从数据库中每次取出20条数据
+                    List<User2> user2List = user2Dao.getUser2(userIndex);
+                    userIndex += user2List.size();
+                    //对每条数据均查询后添加到user2中
+                    //对每条数据均查询最近收听列表然后添加到track中
+                    for (User2 user2 : user2List) {
+                        try {
+                            getUserFriend(user2.getName());
+                            getRecentTrack(user2.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (SAXException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+
+        Thread getTrackInfoThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int trackIndex = 0;
+                while (getUserInfoThread.isAlive()||(trackDao.count()>(trackIndex+1))) {
+                    List<Track> trackList = trackDao.getTrack(trackIndex);
+                    trackIndex += trackList.size();
+                    //对每条轨道均查询其标签并更新track表，将新标签保存到tag表
+                    for (Track track : trackList) {
+                        try {
+                            getTrackTag(track.getArtist(), track.getName());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (SAXException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        getUserInfoThread.start();
+        getTrackInfoThread.start();
+        getTrackInfoThread.join();
     }
 }

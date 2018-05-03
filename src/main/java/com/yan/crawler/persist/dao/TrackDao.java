@@ -14,4 +14,7 @@ import java.util.List;
 public interface TrackDao {
     void insert(@Param("list") List<Track> tracks);
     void updateTag(String artist, String name, String tags);
+    List<Track> getTrack(int index);
+    void insertUserTrack(String username,@Param("tracks")List<Track> tracks);
+    int count();
 }

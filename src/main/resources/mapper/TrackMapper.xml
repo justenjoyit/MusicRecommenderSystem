@@ -15,7 +15,7 @@
 
     <insert id="insert">
         INSERT IGNORE INTO track(artist,name,mbid,url,images)
-        VALUES 
+        VALUES
         <foreach collection="list" item="track" index="index" separator=",">
             (#{track.artist},#{track.name},#{track.mbid},#{track.url},#{track.images})
         </foreach>
@@ -28,4 +28,20 @@
         WHERE
             artist = #{param1} AND name = #{param2}
     </update>
+
+    <select id="getTrack" resultMap="trackResult">
+        SELECT * FROM track LIMIT #{index},20
+    </select>
+
+    <insert id="insertUserTrack">
+        INSERT IGNORE INTO user_track(username,artist,trackname)
+        VALUES
+        <foreach collection="tracks" item="track" separator=",">
+            (#{param1},#{track.artist},#{track.name})
+        </foreach>
+    </insert>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM track
+    </select>
 </mapper>
