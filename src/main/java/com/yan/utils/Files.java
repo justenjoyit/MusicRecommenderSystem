@@ -31,7 +31,7 @@ public class Files {
     }
 
     /**
-     * 从文件中毒去数据
+     * 从文件中读去数据
      * @param filename
      * @return
      * @throws IOException
@@ -50,5 +50,28 @@ public class Files {
         reader.close();
         fip.close();
         return result;
+    }
+
+    /**
+     * 删除文件
+     * @param path
+     * @return
+     */
+    public static boolean deleteDir(String path) {
+        File dir = new File(path);
+        if (dir.exists()) {
+            for (File f : dir.listFiles()) {
+                if (f.isDirectory()) {
+                    deleteDir(f.getName());
+                } else {
+                    f.delete();
+                }
+            }
+            dir.delete();
+            return true;
+        } else {
+            System.out.println("文件(夹)不存在!");
+            return false;
+        }
     }
 }
