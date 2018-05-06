@@ -32,6 +32,29 @@ public class Tag {
         this.count = count;
     }
 
+    /**
+     * 用来做标签去重
+     *
+     * @param obj 要比较的对象
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Tag other = (Tag) obj;
+        if (name == null) {
+            if (other.getName() != null)
+                return false;
+        } else if (!name.equals(other.getName()))
+            return false;
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +

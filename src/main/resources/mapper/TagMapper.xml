@@ -15,4 +15,8 @@
             (#{tag.name})
         </foreach>
     </insert>
+
+    <select id="selectAll" resultMap="tagResult">
+        SELECT * FROM tag
+    </select>
 </mapper>

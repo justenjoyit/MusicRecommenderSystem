@@ -12,8 +12,18 @@ import java.util.List;
 @Repository
 public interface TrackDao {
     void insert(@Param("list") List<Track> tracks);
+
     void updateTag(String artist, String name, String tags);
+
     List<Track> getTrack(int index);
-    void insertUserTrack(String username,@Param("tracks")List<Track> tracks);
+
+    void insertUserTrack(String username, @Param("tracks") List<Track> tracks);
+
     int count();
+
+    void updateTrackTag(@Param("tracks") List<Track> tracks);
+
+    void deleteTrack(@Param("tracks") List<Track> tracks);
+
+    void deleteUserTrack(@Param("tracks") List<Track> tracks);
 }

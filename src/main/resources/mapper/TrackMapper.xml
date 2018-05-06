@@ -30,12 +30,12 @@
     </update>
 
     <select id="getTrack" resultMap="trackResult">
-        SELECT * FROM track LIMIT #{index},20
+        SELECT * FROM track LIMIT #{index},10
     </select>
 
     <insert id="insertUserTrack">
         INSERT IGNORE INTO user_track(username,artist,trackname)
-        VALUES
+        VALUES'-08644689o'
         <foreach collection="tracks" item="track" separator=",">
             (#{param1},#{track.artist},#{track.name})
         </foreach>
@@ -44,4 +44,31 @@
     <select id="count" resultType="int">
         SELECT COUNT(*) FROM track
     </select>
+
+    <update id="updateTrackTag" parameterType="List">
+        UPDATE track
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="tags = case" suffix="end,">
+                <foreach collection="tracks" item="track" index="index">
+                    WHEN artist = #{track.artist} AND name = #{track.name} THEN  #{track.tags}
+                </foreach>
+            </trim>
+        </trim>
+    </update>
+
+    <delete id="deleteTrack" parameterType="List">
+        DELETE FROM track
+        WHERE
+        <foreach collection="tracks" index="index" item="track" separator="or">
+            ( artist = #{track.artist} AND name = #{track.name})
+        </foreach>
+    </delete>
+
+    <delete id="deleteUserTrack" parameterType="List">
+        DELETE FROM user_track
+        WHERE
+        <foreach collection="tracks" item="track" separator="or">
+            (artist = #{track.artist} AND trackname = #{track.name})
+        </foreach>
+    </delete>
 </mapper>
