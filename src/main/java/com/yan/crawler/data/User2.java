@@ -19,6 +19,7 @@ public class User2 {
     private int bootstrap;
     private String registered;
     private String alumni;
+    private String tags;
 
     public String getName() {
         return name;
@@ -122,6 +123,14 @@ public class User2 {
 
     public void setAlumni(String alumni) {
         this.alumni = alumni;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     @Override
