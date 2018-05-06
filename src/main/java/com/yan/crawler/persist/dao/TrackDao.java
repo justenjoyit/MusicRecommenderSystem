@@ -1,7 +1,6 @@
 package com.yan.crawler.persist.dao;
 
-import com.yan.crawler.Tag;
-import com.yan.crawler.Track;
+import com.yan.crawler.data.Track;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

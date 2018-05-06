@@ -1,4 +1,4 @@
-package com.yan.crawler;
+package com.yan.crawler.data;
 
 /**
  * Created by YZT on 2018/5/1.

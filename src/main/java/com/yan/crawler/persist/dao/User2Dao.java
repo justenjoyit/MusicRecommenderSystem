@@ -1,6 +1,6 @@
 package com.yan.crawler.persist.dao;
 
-import com.yan.crawler.User2;
+import com.yan.crawler.data.User2;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

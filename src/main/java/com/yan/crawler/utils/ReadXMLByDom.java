@@ -1,7 +1,9 @@
-package com.yan.crawler;
+package com.yan.crawler.utils;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.yan.crawler.data.Tag;
+import com.yan.crawler.data.Track;
+import com.yan.crawler.data.User2;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

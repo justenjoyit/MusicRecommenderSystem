@@ -1,4 +1,4 @@
-package com.yan.crawler;
+package com.yan.crawler.data;
 
 import java.util.ArrayList;
 

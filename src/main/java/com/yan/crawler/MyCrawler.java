@@ -1,9 +1,13 @@
 package com.yan.crawler;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yan.crawler.data.Tag;
+import com.yan.crawler.data.Track;
+import com.yan.crawler.data.User2;
 import com.yan.crawler.persist.dao.TagDao;
 import com.yan.crawler.persist.dao.TrackDao;
 import com.yan.crawler.persist.dao.User2Dao;
+import com.yan.crawler.utils.ReadXMLByDom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xml.sax.SAXException;
