@@ -13,6 +13,7 @@ public class Track {
     private String url;
     private String images;
     private String tags;
+    private int duration;
 
     public int getId() {
         return id;
@@ -70,19 +71,13 @@ public class Track {
         this.tags = tags;
     }
 
-    //    public ArrayList<String> getImages() {
-//        return images;
-//    }
+    public int getDuration() {
+        return duration;
+    }
 
-//    public void setImages(ArrayList<String> images) {
-//        this.images = images;
-//    }
-//
-//    public void addImage(String image) {
-//        if (images == null)
-//            images = new ArrayList<>();
-//        images.add(image);
-//    }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
     @Override
     public String toString() {

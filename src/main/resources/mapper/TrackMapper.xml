@@ -13,7 +13,7 @@
         <result property="tags" column="tags"/>
     </resultMap>
 
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT IGNORE INTO track(artist,name,mbid,url,images)
         VALUES
         <foreach collection="list" item="track" index="index" separator=",">
@@ -34,10 +34,10 @@
     </select>
 
     <insert id="insertUserTrack">
-        INSERT IGNORE INTO user_track(username,artist,trackname)
-        VALUES'-08644689o'
+        INSERT IGNORE INTO user_track(userID,username,trackID,artist,trackname,duration)
+        VALUES
         <foreach collection="tracks" item="track" separator=",">
-            (#{param1},#{track.artist},#{track.name})
+            (#{param1.id},#{param1.name},#{track.id},#{track.artist},#{track.name},#{track.duration})
         </foreach>
     </insert>
 
@@ -50,7 +50,7 @@
         <trim prefix="set" suffixOverrides=",">
             <trim prefix="tags = case" suffix="end,">
                 <foreach collection="tracks" item="track" index="index">
-                    WHEN artist = #{track.artist} AND name = #{track.name} THEN  #{track.tags}
+                    WHEN artist = #{track.artist} AND name = #{track.name} THEN #{track.tags}
                 </foreach>
             </trim>
         </trim>

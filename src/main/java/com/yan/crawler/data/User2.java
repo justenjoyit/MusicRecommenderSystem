@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by YZT on 2018/5/1.
  */
 public class User2 {
+    private int id;
     private String name;
     private String realname;
     private String images;
@@ -20,6 +21,14 @@ public class User2 {
     private String registered;
     private String alumni;
     private String tags;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

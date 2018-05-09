@@ -4,14 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yan.crawler.persist.dao.User2Dao">
     <resultMap id="user2Result" type="User2">
-
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="realname" property="realname"/>
+        <result column="images" property="images"/>
+        <result column="url" property="url"/>
+        <result column="age" property="age"/>
+        <result column="gender" property="gender"/>
+        <result column="subscriber" property="subscriber"/>
+        <result column="playcount" property="playcount"/>
+        <result column="playlists" property="playlists"/>
+        <result column="bootstrap" property="bootstrap"/>
+        <result column="registered" property="registered"/>
+        <result column="alumni" property="alumni"/>
+        <result column="tags" property="tags"/>
     </resultMap>
 
-    <insert id="insert">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true" keyColumn="id">
         INSERT IGNORE INTO
         user2(name,realname,images,url,country,age,gender,subscriber,playcount,playlists,bootstrap,registered,alumni)
         VALUES
-        <foreach collection="users" item="user" separator=",">
+        <foreach collection="list" item="user" separator=",">
             (#{user.name},#{user.realname},#{user.images},#{user.url},#{user.country},#{user.age},#{user.gender},#{user.subscriber},#{user.playcount},#{user.playlists},#{user.bootstrap},#{user.registered},#{user.alumni})
         </foreach>
     </insert>

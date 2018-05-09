@@ -1,6 +1,7 @@
 package com.yan.crawler.persist.dao;
 
 import com.yan.crawler.data.Track;
+import com.yan.crawler.data.User2;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,13 +12,13 @@ import java.util.List;
  */
 @Repository
 public interface TrackDao {
-    void insert(@Param("list") List<Track> tracks);
+    void insert(List<Track> tracks);
 
     void updateTag(String artist, String name, String tags);
 
     List<Track> getTrack(int index);
 
-    void insertUserTrack(String username, @Param("tracks") List<Track> tracks);
+    void insertUserTrack(User2 user2, @Param("tracks") List<Track> tracks);
 
     int count();
 

@@ -28,6 +28,8 @@ public class MyCrawler {
     private final String RECENT_TRACK = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=";
     private final String TRACK_TAG = "http://ws.audioscrobbler.com/2.0/?method=track.gettoptags&artist=";
     private final String USER_FRIEND = "http://ws.audioscrobbler.com/2.0/?method=user.getfriends&user=";
+    private final String USER_TOP_TRACK = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=";
+    private final String USER_LOVED_TRACK = "http://ws.audioscrobbler.com/2.0/?method=user.getlovedtracks&user=";
     private final String API_KEY = "&api_key=b25b959554ed76058ac220b7b2e0a026";
 
     @Autowired
@@ -69,18 +71,18 @@ public class MyCrawler {
      *
      * @param username
      */
-    public void getRecentTrack(String username) throws IOException, SAXException {
-        String newUsername = username.replaceAll(" ", "+");
-        String url = RECENT_TRACK + newUsername + API_KEY;
-        String result = sendGet(url);
-        List<Track> trackList = ReadXMLByDom.getTracks(result);
-        //保存到track
-        if (trackList.size() != 0) {
-            trackDao.insert(trackList);
-            //将用户和其最近收听轨道的关系保存到user_track
-            trackDao.insertUserTrack(username, trackList);
-        }
-    }
+//    public void getRecentTrack(String username) throws IOException, SAXException {
+//        String newUsername = username.replaceAll(" ", "+");
+//        String url = RECENT_TRACK + newUsername + API_KEY;
+//        String result = sendGet(url);
+//        List<Track> trackList = ReadXMLByDom.getTracks(result);
+//        //保存到track
+//        if (trackList.size() != 0) {
+//            trackDao.insert(trackList);
+//            //将用户和其最近收听轨道的关系保存到user_track
+//            trackDao.insertUserTrack(username, trackList);
+//        }
+//    }
 
     /**
      * 通过artist和track找到歌曲标签
@@ -113,8 +115,22 @@ public class MyCrawler {
         String result = sendGet(url);
         List<User2> user2List = ReadXMLByDom.getUsers(result);
         //保存到user2
-        if (user2List.size() != 0)
-            user2Dao.insert(user2List);
+        if (user2List != null && user2List.size() != 0)
+        user2Dao.insert(user2List);
+    }
+
+    public void getTopTrack(User2 user2) throws IOException, SAXException {
+        String newUsername = user2.getName().replaceAll(" ", "+");
+        String url = USER_TOP_TRACK + newUsername + API_KEY;
+        String result = sendGet(url);
+        List<Track> user_track = ReadXMLByDom.getTracks(result);
+        if (user_track != null && user_track.size() > 0) {
+            System.out.println("-------------------------------");
+            System.out.println(user_track);
+            System.out.println("-------------------------------");
+            trackDao.insert(user_track);
+            trackDao.insertUserTrack(user2, user_track);
+        }
     }
 
     /**
@@ -136,7 +152,7 @@ public class MyCrawler {
                     for (User2 user2 : user2List) {
                         try {
                             getUserFriend(user2.getName());
-                            getRecentTrack(user2.getName());
+                            getTopTrack(user2);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (SAXException e) {
@@ -147,28 +163,29 @@ public class MyCrawler {
             }
         });
 
-        Thread getTrackInfoThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int trackIndex = 0;
-                while (getUserInfoThread.isAlive()||(trackDao.count()>(trackIndex+1))) {
-                    List<Track> trackList = trackDao.getTrack(trackIndex);
-                    trackIndex += trackList.size();
-                    //对每条轨道均查询其标签并更新track表，将新标签保存到tag表
-                    for (Track track : trackList) {
-                        try {
-                            getTrackTag(track.getArtist(), track.getName());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (SAXException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        });
+//        Thread getTrackInfoThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                int trackIndex = 0;
+//                while (getUserInfoThread.isAlive() || (trackDao.count() > (trackIndex + 1))) {
+//                    List<Track> trackList = trackDao.getTrack(trackIndex);
+//                    trackIndex += trackList.size();
+//                    //对每条轨道均查询其标签并更新track表，将新标签保存到tag表
+//                    for (Track track : trackList) {
+//                        try {
+//                            getTrackTag(track.getArtist(), track.getName());
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        } catch (SAXException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }
+//            }
+//        });
         getUserInfoThread.start();
-        getTrackInfoThread.start();
-        getTrackInfoThread.join();
+        getUserInfoThread.join();
+//        getTrackInfoThread.start();
+//        getTrackInfoThread.join();
     }
 }

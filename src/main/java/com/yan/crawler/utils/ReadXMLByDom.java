@@ -128,27 +128,30 @@ public class ReadXMLByDom {
             for (int j = 0; j < cList.getLength(); j += 2) {
                 Node cNode = cList.item(j);
                 if (cNode.getFirstChild() != null) {
-                    String content = cNode.getFirstChild().getTextContent();
                     String nodeName = cNode.getNodeName();
                     switch (nodeName) {
                         case "artist": {
-                            track.setArtist(content);
+                            track.setArtist(cNode.getFirstChild().getTextContent());
                             break;
                         }
                         case "name": {
-                            track.setName(content);
+                            track.setName(cNode.getTextContent());
                             break;
                         }
                         case "mbid": {
-                            track.setMbid(content);
+                            track.setMbid(cNode.getTextContent());
                             break;
                         }
                         case "url": {
-                            track.setUrl(content);
+                            track.setUrl(cNode.getTextContent());
                             break;
                         }
                         case "image": {
-                            images.add(content);
+                            images.add(cNode.getTextContent());
+                            break;
+                        }
+                        case "duration":{
+                            track.setDuration(Integer.valueOf(cNode.getTextContent()));
                             break;
                         }
                     }
