@@ -33,9 +33,9 @@ public class MR4 {
             //设置hdfs的地址
             conf.set("fs.defaultFS", hdfs);
             //创建一个job实例
-            Job job = Job.getInstance(conf, "step4");
+            Job job = new Job(conf, "step4");
             //添加分布式缓存文件
-            job.addCacheFile(new URI(cache+"#itemUserScore2"));
+//            job.addCacheFile(new URI(cache+"#itemUserScore2"));
             //设置job的主类
             job.setJarByClass(MR4.class);
             //设置job的Mapper类和Reducer类
@@ -69,9 +69,10 @@ public class MR4 {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
+//        catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
         return -1;
     }
 }

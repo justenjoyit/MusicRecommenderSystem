@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class MR1 {
     //输入文件相对路径
-    private static String inPath = "/UserCF/step1_input/ActionList.txt";
+    private static String inPath = "/recommend/input/ActionList.txt";
     //输出文件的相对路径
     private static String outPath = "/UserCF/step1_output";
     //hdfs地址

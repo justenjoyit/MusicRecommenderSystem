@@ -72,6 +72,9 @@ public class MR2 {
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+//        catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
         return -1;
     }
 }

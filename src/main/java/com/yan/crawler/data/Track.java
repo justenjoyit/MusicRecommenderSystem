@@ -14,6 +14,7 @@ public class Track {
     private String images;
     private String tags;
     private int duration;
+    private double recommend;
 
     public int getId() {
         return id;
@@ -77,6 +78,14 @@ public class Track {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public double getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(double recommend) {
+        this.recommend = recommend;
     }
 
     @Override

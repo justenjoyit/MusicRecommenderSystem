@@ -33,9 +33,9 @@ public class MR5 {
             //设置hdfs的地址
             conf.set("fs.defaultFS", hdfs);
             //创建一个job实例
-            Job job = Job.getInstance(conf, "step5");
+            Job job = new Job(conf, "step5");
             //添加分布式缓存文件
-            job.addCacheFile(new URI(cache+"#itemUserScore3"));
+//            job.addCacheFile(new URI(cache+"#itemUserScore3"));
             //设置job的主类
             job.setJarByClass(MR5.class);
             //设置job的Mapper类和Reducer类
@@ -69,9 +69,10 @@ public class MR5 {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
+//        catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
         return -1;
     }
 }

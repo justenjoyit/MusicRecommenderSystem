@@ -46,7 +46,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.yan.persist.dao,com.yan.crawler.persist.dao"/>
+        <property name="basePackage" value="com.yan.persist.dao,com.yan.crawler.persist.dao,com.yan.hadoop.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
@@ -63,5 +63,6 @@
     <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
     <bean id="aspectBean" class="com.yan.aop.ApiMonitor"/>
     <!--aop相关配置 结束-->
+
 
 </beans>

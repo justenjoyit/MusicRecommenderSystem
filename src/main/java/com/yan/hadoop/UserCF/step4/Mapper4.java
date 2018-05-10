@@ -91,6 +91,7 @@ public class Mapper4 extends Mapper<LongWritable, Text, Text, Text> {
             outValue.set(row_matrix2 + "_" + df.format(result));
             //输出格式 key：行 value：列_值
             context.write(outKey, outValue);
+            System.out.println(outKey + "\t" + outValue);
         }
     }
 }

@@ -10,6 +10,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +85,7 @@ public class Mapper2 extends Mapper<LongWritable, Text, Text, Text> {
             denominator2 = Math.sqrt(denominator2);
 
             //矩阵两行相乘的结果
-            int numerator = 0;
+            double numerator = 0;
             for (String column_value_matrix1 : column_value_array_matrix1) {
                 String column_matrix1 = column_value_matrix1.split("_")[0];
                 String value_matrix1 = column_value_matrix1.split("_")[1];
@@ -94,7 +95,12 @@ public class Mapper2 extends Mapper<LongWritable, Text, Text, Text> {
                     if (column_value_matrix2.startsWith(column_matrix1 + "_")) {
                         String value_matrix2 = column_value_matrix2.split("_")[1];
                         //将两列的值乘并累加
-                        numerator += Double.valueOf(value_matrix1) * Double.valueOf(value_matrix2);
+                        BigDecimal b1 = new BigDecimal(value_matrix1);
+                        BigDecimal b2 = new BigDecimal(value_matrix2);
+                        //相乘
+                        BigDecimal multi = b1.multiply(b2);
+                        BigDecimal add = new BigDecimal(numerator);
+                        numerator = multi.add(add).doubleValue();
                     }
                 }
             }

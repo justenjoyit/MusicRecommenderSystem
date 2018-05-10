@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.crawler.persist.dao.UserTrackDao">
+    <resultMap id="userTrackResult" type="UserTrack">
+        <id property="id" column="id"/>
+        <result property="userID" column="userID"/>
+        <result property="username" column="username"/>
+        <result property="trackID" column="trackID"/>
+        <result property="artist" column="artist"/>
+        <result property="trackname" column="trackname"/>
+        <result property="duration" column="duration"/>
+        <result property="recommend" column="recommend"/>
+    </resultMap>
+    <select id="selectAll" resultType="int">
+        SELECT COUNT(*) FROM user_track
+    </select>
+
+    <select id="select" resultType="UserTrack">
+        SELECT * FROM user_track LIMIT #{index},1
+    </select>
+
+    <select id="selectUserTrack" resultMap="userTrackResult">
+        SELECT * FROM user_track
+        WHERE userID = #{userID}
+    </select>
+</mapper>
