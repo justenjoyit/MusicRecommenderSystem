@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by YZT on 2018/5/8.
  */
-public class JobRunner {
+public class UserCFJobRunner {
     public static void run() {
         int status1 = -1;
         int status2 = -1;
