@@ -316,9 +316,9 @@
     <div id="arrow" class="g_arrow g_arrow_up"></div>
     <div id="memberBar" class="memberBar">
         <div class="right">
-            <div style="float:right;"><a class="memberOption memberReg" href="javascript:Site.memberSignup();"
+            <div style="float:right;"><a class="memberOption memberReg" href="http://localhost:8080/MusicRecommenderSystem/reg"
                                          style="margin-right:10px;">注册</a> <a class="memberOption memberLogin"
-                                                                              href="javascript:Site.memberLogin();">登录</a>
+                                                                              href="http://localhost:8080/MusicRecommenderSystem/login">登录</a>
             </div>
         </div>
         <div id="topBarMsg"
@@ -624,9 +624,10 @@
                                                                                 <div class="formBannerOther formBannerOther27">
                                                                                     <div class="formBannerBtn formBannerBtn27">
                                                                                         <span style="_display:inline-block;_position:relative;">
-                                                                                            <a hidefocus="true" class="g_close">
+                                                                                            <a hidefocus="true"
+                                                                                               class="g_close">
                                                                                                 <span class="bannerMoreInnerSpan"
-                                                                                 style="_display:none;">&nbsp;
+                                                                                                      style="_display:none;">&nbsp;
                                                                                                 </span>
                                                                                             </a>
 </span></div>
@@ -989,10 +990,12 @@
             cache: false,
             processData: false,
             success: function (data) {
-                alert(data.message)
+                alert(data.message);
+                window.location.href="http://localhost:8080/MusicRecommenderSystem";
             },
             error: function (data) {
-                alert(data.message)
+                alert(data.message);
+                window.location.href="http://localhost:8080/MusicRecommenderSystem/reg";
             },
         })
     })

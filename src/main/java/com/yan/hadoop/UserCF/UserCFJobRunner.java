@@ -8,6 +8,7 @@ import com.yan.hadoop.UserCF.step2.MR2;
 import com.yan.hadoop.UserCF.step3.MR3;
 import com.yan.hadoop.UserCF.step4.MR4;
 import com.yan.hadoop.UserCF.step5.MR5;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -65,7 +66,9 @@ public class UserCFJobRunner {
     public static List<Track> getRecommend(User2 user2) throws IOException {
         List<String> cacheList = new ArrayList<>();
         //将计算结果读入List<String>中
-        FileSystem fileSystem = FileSystem.get(MR5.conf);
+        Configuration conf = new Configuration();
+        conf.set("fs.defaultFS", "hdfs://localhost:9000");
+        FileSystem fileSystem = FileSystem.get(conf);
         Path matrix2 = new Path("/UserCF/step5_output/part-r-00000");
         FSDataInputStream in = null;
         in = fileSystem.open(matrix2);

@@ -71,4 +71,14 @@
             (artist = #{track.artist} AND trackname = #{track.name})
         </foreach>
     </delete>
+
+    <select id="select" parameterType="List" resultMap="trackResult">
+        SELECT * FROM track
+        WHERE id IN
+        (
+        <foreach collection="tracks" item="track" separator=",">
+            #{track.id}
+        </foreach>
+        )
+    </select>
 </mapper>

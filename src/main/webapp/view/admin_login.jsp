@@ -427,7 +427,7 @@
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;color: red;"
+                                                                                                      style="outline:none;"
                                                                                                       href="http://localhost:8080/MusicRecommenderSystem/login"><span
                                                                                     class="itemName0">用户登录</span></a>
                                                                             </td>
@@ -443,7 +443,7 @@
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;"
+                                                                                                      style="outline:none;color: red;"
                                                                                                       href="http://localhost:8080/MusicRecommenderSystem/adminlogin"><span
                                                                                     class="itemName0">管理员登录</span></a>
                                                                             </td>
@@ -928,9 +928,9 @@
 
         dataObj.email = $("#email").val();
         dataObj.password = $("#password").val();
-        dataObj.role = 0;
+        dataObj.role = 1;
         $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem/login",
+            url: "http://localhost:8080/MusicRecommenderSystem/adminlogin",
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -943,7 +943,7 @@
             },
             error: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/login";
+                window.location.href="http://localhost:8080/MusicRecommenderSystem/adminlogin";
             },
         })
     })

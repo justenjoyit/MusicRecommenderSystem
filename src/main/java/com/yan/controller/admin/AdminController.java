@@ -1,9 +1,16 @@
 package com.yan.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.yan.aop.service.RecordService;
 import com.yan.persist.data.JsonResult;
 import com.yan.persist.entity.User;
 import com.yan.persist.service.UserService;
+import com.yan.utils.MD5;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +33,32 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/adminlogin",method = RequestMethod.GET)
+    public String login(){
+        return "admin_login";
+    }
+    @RequestMapping(value = "/adminlogin", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult login(@RequestBody User post) {
+        JsonResult jsonResult = new JsonResult();
+
+        Subject currentUser = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(JSON.toJSONString(post), MD5.md5(post.getPassword()));
+        try {
+            currentUser.login(token);
+        } catch (UnknownAccountException ue) {
+            jsonResult.setErrorCode("1");
+            jsonResult.setMessage("账户不存在或用户名或密码错误");
+            return jsonResult;
+        } catch (AccountException ae) {
+            jsonResult.setErrorCode("1");
+            jsonResult.setMessage("邮箱未激活");
+            return jsonResult;
+        }
+        jsonResult.setErrorCode("0");
+        jsonResult.setMessage("登录成功");
+        return jsonResult;
+    }
     /**
      * 查看网站性能
      *

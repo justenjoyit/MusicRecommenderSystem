@@ -23,7 +23,7 @@ public class Mapper4 extends Mapper<LongWritable, Text, Text, Text> {
 
     private List<String> cacheList = new ArrayList<>();
 
-    private DecimalFormat df = new DecimalFormat("0.00");
+    private DecimalFormat df = new DecimalFormat("0.00000");
 
     @Override
     protected void setup(Context context) throws IOException, InterruptedException {

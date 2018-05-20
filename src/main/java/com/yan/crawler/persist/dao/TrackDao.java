@@ -5,6 +5,7 @@ import com.yan.crawler.data.User2;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,4 +28,6 @@ public interface TrackDao {
     void deleteTrack(@Param("tracks") List<Track> tracks);
 
     void deleteUserTrack(@Param("tracks") List<Track> tracks);
+
+    ArrayList<Track> select(@Param("tracks") List<Track> tracks);
 }

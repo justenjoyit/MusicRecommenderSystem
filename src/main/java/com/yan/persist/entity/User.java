@@ -12,6 +12,7 @@ public class User {
     private String email;
     private Date lastLogin;
     private int status;
+    private int role;
 
     public int getId() {
         return id;
@@ -61,6 +62,14 @@ public class User {
         this.status = status;
     }
 
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -70,6 +79,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", lastLogin=" + lastLogin +
                 ", status=" + status +
+                ", role=" + role +
                 '}';
     }
 }

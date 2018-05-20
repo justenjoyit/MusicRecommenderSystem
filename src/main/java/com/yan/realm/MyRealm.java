@@ -1,5 +1,7 @@
 package com.yan.realm;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.yan.persist.dao.UserDao;
 import com.yan.persist.entity.User;
 import org.apache.shiro.authc.*;
@@ -27,9 +29,14 @@ public class MyRealm extends AuthorizingRealm {
     //认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String email = (String) authenticationToken.getPrincipal();
+//        String email = (String) authenticationToken.getPrincipal();
+        Object test = authenticationToken.getPrincipal();
+
+        User currentUser = JSONObject.toJavaObject(JSON.parseObject((String)test),User.class);
         String password = String.valueOf(((UsernamePasswordToken) authenticationToken).getPassword());
-        User user = userDao.getUser(email, password);
+        User user;
+        user = userDao.getUser(currentUser.getEmail(), password, currentUser.getRole());
+
 
         if (user == null)
             throw new UnknownAccountException();
