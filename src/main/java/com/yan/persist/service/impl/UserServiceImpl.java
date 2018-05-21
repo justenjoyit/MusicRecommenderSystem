@@ -53,4 +53,20 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUser(post);
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        User user = new User();
+        user.setEmail(email);
+        return userDao.findUserByUsernameOrEmail(user);
+    }
+
+    @Override
+    public void changePwd(User post) {
+        User user = userDao.findUserByUsernameOrEmail(post);
+        if (user == null)
+            throw new MyException(Consts.USER_NOT_EXIST, "0");
+        post.setPassword(MD5.md5(post.getPassword()));
+        userDao.updatePwd(post);
+    }
+
 }

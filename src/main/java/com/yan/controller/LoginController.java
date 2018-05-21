@@ -1,5 +1,6 @@
 package com.yan.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.yan.persist.data.JsonResult;
 import com.yan.persist.entity.User;
 import com.yan.persist.service.UserService;
@@ -35,7 +36,7 @@ public class LoginController {
         JsonResult jsonResult = new JsonResult();
 
         Subject currentUser = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(post.getEmail(), MD5.md5(post.getPassword()));
+        UsernamePasswordToken token = new UsernamePasswordToken(JSON.toJSONString(post),MD5.md5(post.getPassword()));
         try {
             currentUser.login(token);
         } catch (UnknownAccountException ue) {

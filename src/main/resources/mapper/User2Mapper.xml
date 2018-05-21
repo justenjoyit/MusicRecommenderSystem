@@ -32,4 +32,9 @@
     <select id="getUser2" resultMap="user2Result">
         SELECT * FROM user2 LIMIT #{index},20
     </select>
+
+    <select id="getUser2ByName" parameterType="User2" resultType="User2">
+        SELECT * FROM user2
+        WHERE name = #{name}
+    </select>
 </mapper>

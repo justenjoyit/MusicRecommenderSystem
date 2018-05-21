@@ -13,4 +13,5 @@ import java.util.List;
 public interface User2Dao {
     void insert(List<User2> users);
     List<User2> getUser2(int index);
+    User2 getUser2ByName(User2 user2);
 }

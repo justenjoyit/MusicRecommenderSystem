@@ -39,11 +39,19 @@ public class MyRecommend {
     @Autowired
     private Score score;
 
-    @RequestMapping(value = "/showUserCF", method = RequestMethod.POST)
-//    @ResponseBody
-    public String userCF(@RequestBody User2 user2,HttpServletRequest request) {
+    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    public String recommend() {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated()){
+        if(!currentUser.isAuthenticated())
+            return "login";
+        return "main_recommend";
+    }
+
+    @RequestMapping(value = "/showUserCF", method = RequestMethod.GET)
+//    @ResponseBody
+    public String userCF(HttpServletRequest request) {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
             return "login";
         }
 //        JsonResult jsonResult = new JsonResult();
@@ -57,9 +65,11 @@ public class MyRecommend {
 //            if (userCF_flag)
 //                UserCFJobRunner.run();
 
+            User2 user2 = new User2();
+            user2.setName((String)currentUser.getPrincipal());
             //返回该用户的推荐列表
             tracks = userCF.getUserCF(user2);
-            request.setAttribute("recommend",tracks);
+            request.setAttribute("recommend", tracks);
         } catch (Exception e) {
 //            jsonResult.setErrorCode("1");
 //            jsonResult.setMessage(e.getMessage());
@@ -71,11 +81,11 @@ public class MyRecommend {
         return "recommend";
     }
 
-    @RequestMapping(value = "/showItemCF", method = RequestMethod.POST)
+    @RequestMapping(value = "/showItemCF", method = RequestMethod.GET)
 //    @ResponseBody
-    public String itemCF(@RequestBody User2 user2,HttpServletRequest request) {
+    public String itemCF(HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated()){
+        if (!currentUser.isAuthenticated()) {
             return "login";
         }
 //        JsonResult jsonResult = new JsonResult();
@@ -89,9 +99,11 @@ public class MyRecommend {
 //            if (itemCF_flag)
 //                ItemCFJobRunner.run();
 
+            User2 user2 = new User2();
+            user2.setName((String)currentUser.getPrincipal());
             //返回该用户的推荐列表
             tracks = itemCF.getItemCF(user2);
-            request.setAttribute("recommend",tracks);
+            request.setAttribute("recommend", tracks);
 
         } catch (Exception e) {
 //            jsonResult.setErrorCode("1");
@@ -105,7 +117,7 @@ public class MyRecommend {
     }
 
 
-    @RequestMapping(value = "/recommend", method = RequestMethod.GET)
+    @RequestMapping(value = "/recommend1", method = RequestMethod.GET)
     public String recommend(HttpServletRequest request, HttpServletResponse response) {
         List<Track> tracks = new ArrayList<>();
         Track track1 = new Track();
@@ -118,7 +130,7 @@ public class MyRecommend {
         track2.setUrl("www.url2.com");
         tracks.add(track1);
         tracks.add(track2);
-        request.setAttribute("recommend",tracks);
+        request.setAttribute("recommend", tracks);
         return "recommend";
     }
 }

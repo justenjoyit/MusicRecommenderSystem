@@ -49,4 +49,12 @@
         DELETE FROM user
         WHERE email = #{email}
     </delete>
+
+    <update id="updatePwd" parameterType="User">
+        UPDATE user
+        SET
+        password = #{password}
+        WHERE
+        email = #{email} OR username = #{username}
+    </update>
 </mapper>

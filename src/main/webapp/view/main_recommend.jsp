@@ -4,11 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Title</title>
-    <%--<script src="../resource/js/bootstrap.js"/>--%>
-    <%--<script src="../resource/js/bootstrap.min.js"/>--%>
-    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap-theme.css"/>
+    <title>recommend</title>
 </head>
 <body>
 <div id="g_main" class="g_main g_col17 g_mainManage"
@@ -150,7 +146,7 @@
     table-layout:  fixed;
     width:  100%;
     height:  100%;
-    margin-left:600px;
+    margin-left:500px;
 ">
                             <tbody>
                             <tr>
@@ -206,7 +202,7 @@
     display:  table-cell;
 ">
                                                             <div id="navCenter" class="navCenter"
-                                                                 style="width: 292px;background:  none;position:  relative;margin:  0;padding:  0;overflow:  hidden;height:  100%;">
+                                                                 style="width: 450px;background:  none;position:  relative;margin:  0;padding:  0;overflow:  hidden;height:  100%;">
                                                                 <div class="itemPrev" style="display: none;"></div>
                                                                 <div class="itemContainer" style="
     position:  absolute;
@@ -257,7 +253,7 @@
     width:  140px;
     float:  left;
 ">
-                                                                        <tbody>
+                                                                        <tbody style="text-align: center">
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
@@ -266,6 +262,28 @@
                                                                                                       target="_self"
                                                                                                       onclick="return false;"><span
                                                                                     class="itemName0">我的音乐</span></a>
+                                                                            </td>
+                                                                            <td class="itemRight"></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <table title="" class="item itemCol103 itemIndex2"
+                                                                           cellpadding="0" cellspacing="0" colid="103"
+                                                                           id="nav104" style="
+    height:  120px;
+    width:  140px;
+    float:  left;
+    text-align:  center;
+    color:  black;
+    text-decoration:  none;
+">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="itemLeft"></td>
+                                                                            <td class="itemCenter" style="
+    color:  black;
+"><a hidefocus="true" style="outline:none;color:  black;text-decoration:  none;"
+     href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0">个人信息</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
@@ -315,65 +333,49 @@
             </tbody>
         </table>
 
-
-    </div>
-    <%
-        List<Track> recommend = (ArrayList) request.getAttribute("recommend");
-    %>
-    <div>
         <table border="0" width="80%" align="center">
-            <tr align="center" valign="top">
-                <td height="37" colspan="9"><h2 align="center">推荐音乐</h2></td>
-            </tr>
-            <tr>
-
-            <tr valign="top">
-                <td height="258" width="100%">
-                    <table align="center" width="100%" border="1" id="planTable2"
-                           cellpadding="1" cellspacing="0">
-                        <tr align="center" bgcolor="#e64a19" onMouseOver="">
-
-                            <td width="40%">artist</td>
-                            <td width="40%">name</td>
-                            <td width="20%">url</td>
-
-                        </tr>
-                        <%
-                            for (int i = 0; i < recommend.size(); i++) {
-                                Track track = recommend.get(i);
-                        %>
-                        <tr align="center" height="35px">
-                            <td style="background-color:#f5b6a2"><%=track.getArtist() %>
-                            </td>
-                            <td style="background-color:#f5b6a2"><%=track.getName() %>
-                            </td>
-                            <td style="background-color:#f5b6a2">
-                                <button style="height: 30px;padding:5px;font-size:2px" class="btn btn-default btn-lg"
-                                        onclick="window.location.href='<%=track.getUrl() %>'"><span
-                                        class="glyphicon glyphicon-play-circle"></span>试听
-                                </button>
-                            </td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </table>
+            <tbody>
+            <tr style="
+    height: 120px;
+">
+                <td style="
+    text-align:  center;
+">
+                    <div style="
+    height: 40px;
+    text-align:  center;
+    width: 80%;
+    margin:  auto;
+    background-color:  red;
+    border-radius: 5px;
+    /* vertical-align:  middle; */
+    " align="center"><a href="http://localhost:8080/MusicRecommenderSystem/showUserCF" style="
+    color: black;
+    text-decoration:  none;
+    margin:  auto;
+    line-height: 2.5;
+">基于用户的推荐</a></div>
+                </td>
+                <td style="
+    text-align:  center;
+">
+                    <div style="
+    height: 40px;
+    text-align:  center;
+    width: 80%;
+    margin:  auto;
+    background-color:  red;
+    border-radius: 5px;
+    /* vertical-align:  middle; */
+    " align="center"><a href="http://localhost:8080/MusicRecommenderSystem/showItemCF" style="
+    color: black;
+    text-decoration:  none;
+    margin:  auto;
+    line-height: 2.5;
+">基于物品的推荐</a></div>
                 </td>
             </tr>
-
-            </tr>
-
-            <tr>
-                <td width="6%" height="19">&nbsp;</td>
-
-                <td width="6%">&nbsp;</td>
-                <td width="11%">&nbsp;</td>
-                <td width="11%">&nbsp;</td>
-                <td width="14%">&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td colspan="9"></td>
+            </tbody>
         </table>
     </div>
 </div>

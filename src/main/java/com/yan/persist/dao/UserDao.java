@@ -22,4 +22,6 @@ public interface UserDao {
     void updateStatus(User user);
 
     void deleteUser(User user);
+
+    void updatePwd(User user);
 }

@@ -1,3 +1,4 @@
+<%@ page import="com.yan.persist.entity.User" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://sf13265748.jz.fkw.com/signup.jsp?url=%2F -->
@@ -34,7 +35,7 @@
     <script src="js/video.min.js"></script>
     <script src="js/module_shoppingCart.min.js"></script>
 
-    <title>登录</title>
+    <title>注册</title>
 
     <meta id="_TOKEN" value="6c8b68f59d1bfaeeff3b64376fc4ebde">
 
@@ -271,12 +272,21 @@
     <link rel="stylesheet" type="text/css" href="resource/css/faiSettingPanel.min.css">
 </head>
 <body class="g_bodyManage g_locale2052   ">
-
+<%
+    User user = (User)request.getAttribute("user");
+%>
 
 <script type="text/javascript" src="resource/css/jzUtils.min.js"></script>
 
 
 <script type="text/javascript" src="resource/css/vue.min.js"></script>
+
+
+<script type="text/javascript" language="javascript">
+    document.domain = 'fkw.com';
+    var _portalHost = 'i.fkw.com';
+
+</script>
 
 
 <script type="text/javascript" language="javascript">
@@ -295,20 +305,15 @@
 </script>
 
 
-<div id="memberBarArea" class="memberBarArea g_editPanel" style="top: 15px;">
-    <div id="arrow" class="g_arrow g_arrow_up"></div>
-    <div id="memberBar" class="memberBar">
-        <div class="right">
-            <div style="float:right;">
-                <a class="memberOption memberLogin" href="http://localhost:8080/MusicRecommenderSystem/reg" style="margin-right:10px;">注册</a>
-                <a class="memberOption memberReg" href="http://localhost:8080/MusicRecommenderSystem/login">登录</a>
-            </div>
-        </div>
-        <div id="topBarMsg"
-             style="display:none; position:absolute; top:0; left:0; width:100%; height:100%; background:#eee; text-align:center; z-index: 9010;"></div>
-    </div>
-</div>
-
+<script type="text/javascript">
+    domainLink = "http://www.sf13265748.icoc.me" + window.location.pathname + window.location.search;
+    domainInBaidu = false;		//是否已经百度收录
+    allowedSeo = false;
+    bussinVerProm = "<a class='siteGroupBtn siteGroupPro' target='_blank' href='http://i.fkw.com/portal.jsp#appId=shop' onmouseover='Site.forPayPopup(10, &quot;网站专业版&quot;, &quot;&quot;, 0,&quot;http://i.fkw.com/portal.jsp#appId=shop&quot;);' onmouseleave='Site.forPayPopup(10, &quot;网站专业版&quot;, &quot;&quot;, 1, &quot;http://i.fkw.com/portal.jsp#appId=shop&quot;);'  title='为“网站专业版”功能，点击查看详细功能列表'>&nbsp;</a>";
+    isFaiHost = true;
+    baiduCollecting = false;
+    hasTLDomain = false;
+</script>
 
 <div id="g_main" class="g_main g_col17 g_mainManage" style="top:51px">
     <div id="web" class="g_web g_webManage" style="width: 100%;">
@@ -417,7 +422,7 @@
                                                         <td class="navLeft"></td>
                                                         <td class="navCenterContent" id="navCenterContent" valign="top"
                                                             align="left">
-                                                            <div id="navCenter" class="navCenter" style="width: 292px;">
+                                                            <div id="navCenter" class="navCenter" style="width: 450px;">
                                                                 <div class="itemPrev" style="display: none;"></div>
                                                                 <div class="itemContainer">
                                                                     <table title="" class="item itemCol2 itemIndex1"
@@ -427,9 +432,9 @@
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;color: red;"
-                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/login"><span
-                                                                                    class="itemName0">用户登录</span></a>
+                                                                                                      style="outline:none;"
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/recommend"><span
+                                                                                    class="itemName0">发现音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
@@ -438,14 +443,24 @@
                                                                     <div class="itemSep"></div>
                                                                     <table title="" class="item itemCol103 itemIndex2"
                                                                            cellpadding="0" cellspacing="0" colid="103"
-                                                                           id="nav103">
-                                                                        <tbody>
+                                                                           id="nav104">
+                                                                        <tbody style="text-align: center">
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
                                                                                                       style="outline:none;"
-                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/adminlogin"><span
-                                                                                    class="itemName0">管理员登录</span></a>
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/recommend"><span
+                                                                                    class="itemName0">我的音乐</span></a>
+                                                                            </td>
+                                                                            <td class="itemRight"></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103" id="nav103">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="itemLeft"></td>
+                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0" style="color: red">个人信息</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
@@ -575,14 +590,14 @@
                                                                                         <td class="titleCenter titleCenter27"
                                                                                             valign="top">
                                                                                             <div class="titleText titleText27">
-                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">用户登录</span>
+                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">个人信息</span>
                                                                                                 <div class="bannerTextOutWrap j_doubleTitleSkin">
                                                                                                     <span class="bannerTextInnerWrap"><span
                                                                                                             class="doubleTitleWrap doubleTitleWrap27"><p
                                                                                                             class="mainTitleWrap"><span
                                                                                                             class="mainTitle_fontIcon "
                                                                                                             style=""></span><span
-                                                                                                            class="fk_mainTitle mainTitle mainTitle27">用户登录</span></p><p
+                                                                                                            class="fk_mainTitle mainTitle mainTitle27">个人信息</span></p><p
                                                                                                             class="subTitleWrap"><span
                                                                                                             class="subTitleLineTop dividingLine dividingLine27"></span><span
                                                                                                             class="subTitleText fk_auxiliaryTitle auxiliaryTitle auxiliaryTitle27">副标题</span><span
@@ -603,7 +618,8 @@
                                                                                 <div class="formBannerOther formBannerOther27">
                                                                                     <div class="formBannerBtn formBannerBtn27">
                                                                                         <span style="_display:inline-block;_position:relative;">
-                                                                                            <a hidefocus="true" class="g_close">
+                                                                                            <a hidefocus="true"
+                                                                                               class="g_close">
                                                                                                 <span class="bannerMoreInnerSpan"
                                                                                                       style="_display:none;">&nbsp;
                                                                                                 </span>
@@ -638,10 +654,28 @@
                                                                                                 <div class="itemMiddle">
                                                                                                     <input id="email"
                                                                                                            name="邮箱"
-                                                                                                           placeholder=""
+                                                                                                           placeholder="<%=user.getEmail()%>"
                                                                                                            class="userAddItem isCheckUAI"
                                                                                                            type="text"
-                                                                                                           maxlength="50">
+                                                                                                           maxlength="50"
+                                                                                                           disabled="disabled">
+                                                                                                </div>
+                                                                                                <div class="itemRight">
+                                                                                                    *
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="memberSignupItem itemSpace">
+                                                                                                <div class="itemLeft"
+                                                                                                     title="用户名">用户名：
+                                                                                                </div>
+                                                                                                <div class="itemMiddle">
+                                                                                                    <input id="username"
+                                                                                                           name="用户名"
+                                                                                                           placeholder="<%=user.getUsername()%>"
+                                                                                                           class="userAddItem isCheckUAI"
+                                                                                                           type="text"
+                                                                                                           maxlength="50"
+                                                                                                           disabled="disabled">
                                                                                                 </div>
                                                                                                 <div class="itemRight">
                                                                                                     *
@@ -649,7 +683,7 @@
                                                                                             </div>
                                                                                             <div class="memberSignupItem itemSpace">
                                                                                                 <div class="itemLeft">
-                                                                                                    密码：
+                                                                                                    修改密码：
                                                                                                 </div>
                                                                                                 <div class="itemMiddle">
                                                                                                     <input type="password"
@@ -660,6 +694,20 @@
                                                                                                     *
                                                                                                 </div>
                                                                                             </div>
+                                                                                            <div class="memberSignupItem itemSpace">
+                                                                                                <div class="itemLeft">
+                                                                                                    确认密码：
+                                                                                                </div>
+                                                                                                <div class="itemMiddle">
+                                                                                                    <input type="password"
+                                                                                                           id="repwd"
+                                                                                                           maxlength="50">
+                                                                                                </div>
+                                                                                                <div class="itemRight">
+                                                                                                    *
+                                                                                                </div>
+                                                                                            </div>
+
 
                                                                                             <div id="memberSignupButton"
                                                                                                  class="memberSignupItem_signupButton memberSignupItem_signupButton1">
@@ -668,8 +716,8 @@
                                                                                                 </div>
                                                                                                 <div class="itemMiddle">
                                                                                                     <button type="button"
-                                                                                                            class="login">
-                                                                                                        登 录
+                                                                                                            class="changePWD">
+                                                                                                        修改密码
                                                                                                     </button>
                                                                                                 </div>
                                                                                                 <div class="itemRight">
@@ -923,14 +971,21 @@
 
 <script type="text/javascript" src="js/topBar.min.js"></script>
 <script>
-    $(".login").click(function () {
+    $(".changePWD").click(function () {
         var dataObj = new Object();
 
-        dataObj.email = $("#email").val();
+        dataObj.username = $("#username").attr("placeholder");
+        dataObj.email = $("#email").attr("placeholder");
         dataObj.password = $("#password").val();
-        dataObj.role = 0;
+
+        var repwd = $("#repwd").val();
+        if(repwd != dataObj.password)
+        {
+            alert("确认密码不正确！");
+            window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
+        }
         $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem/login",
+            url: "http://localhost:8080/MusicRecommenderSystem/changepwd",
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -939,11 +994,11 @@
             processData: false,
             success: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/recommend";
+                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
             },
             error: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/login";
+                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
             },
         })
     })

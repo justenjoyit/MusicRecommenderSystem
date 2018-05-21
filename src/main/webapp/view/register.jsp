@@ -432,50 +432,6 @@
                                                     <tbody>
                                                     <tr>
                                                         <td class="navLeft"></td>
-                                                        <td class="navCenterContent" id="navCenterContent" valign="top"
-                                                            align="left">
-                                                            <div id="navCenter" class="navCenter" style="width: 292px;">
-                                                                <div class="itemPrev" style="display: none;"></div>
-                                                                <div class="itemContainer">
-                                                                    <table title="" class="item itemCol2 itemIndex1"
-                                                                           cellpadding="0" cellspacing="0" colid="2"
-                                                                           id="nav2">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;"
-                                                                                                      href="http://sf13265748.jz.fkw.com/"
-                                                                                                      target="_self"
-                                                                                                      onclick="return false;"><span
-                                                                                    class="itemName0">发现音乐</span></a>
-                                                                            </td>
-                                                                            <td class="itemRight"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <div class="itemSep"></div>
-                                                                    <table title="" class="item itemCol103 itemIndex2"
-                                                                           cellpadding="0" cellspacing="0" colid="103"
-                                                                           id="nav103">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;"
-                                                                                                      href="http://sf13265748.jz.fkw.com/col.jsp?id=103"
-                                                                                                      target="_self"
-                                                                                                      onclick="return false;"><span
-                                                                                    class="itemName0">我的音乐</span></a>
-                                                                            </td>
-                                                                            <td class="itemRight"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <div class="itemNext" style="display: none;"></div>
-                                                            </div>
-                                                        </td>
                                                         <td class="navRight"></td>
                                                     </tr>
                                                     </tbody>
@@ -982,7 +938,7 @@
         dataObj.email = $("#email").val();
         dataObj.password = $("#password").val();
         $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem2/reg",
+            url: "http://localhost:8080/MusicRecommenderSystem/reg",
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",

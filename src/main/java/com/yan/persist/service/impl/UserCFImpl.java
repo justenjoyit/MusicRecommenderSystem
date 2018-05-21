@@ -3,6 +3,7 @@ package com.yan.persist.service.impl;
 import com.yan.crawler.data.Track;
 import com.yan.crawler.data.User2;
 import com.yan.crawler.persist.dao.TrackDao;
+import com.yan.crawler.persist.dao.User2Dao;
 import com.yan.hadoop.UserCF.UserCFJobRunner;
 import com.yan.persist.service.UserCF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,13 @@ public class UserCFImpl implements UserCF {
 
     @Autowired
     private TrackDao trackDao;
+    @Autowired
+    private User2Dao user2Dao;
 
     @Override
-    public List<Track> getUserCF(User2 user2) throws IOException {
+    public List<Track> getUserCF(User2 post) throws IOException {
+        //从数据库中找到该用户信息
+        User2 user2 = user2Dao.getUser2ByName(post);
         //找到user2的信息
         List<Track> tracks = UserCFJobRunner.getRecommend(user2);
         //返回该用户的推荐列表前100个

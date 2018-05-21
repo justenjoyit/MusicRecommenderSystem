@@ -12,4 +12,8 @@ public interface UserService {
     void updateStatus(User post);
 
     void deleteUser(User post);
+
+    User getUserByEmail(String email);
+
+    void changePwd(User user);
 }

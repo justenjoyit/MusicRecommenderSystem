@@ -3,6 +3,7 @@ package com.yan.persist.service.impl;
 import com.yan.crawler.data.Track;
 import com.yan.crawler.data.User2;
 import com.yan.crawler.persist.dao.TrackDao;
+import com.yan.crawler.persist.dao.User2Dao;
 import com.yan.hadoop.ItemCF.ItemCFJobRunner;
 import com.yan.persist.service.ItemCF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,12 @@ public class ItemCFImpl implements ItemCF {
 
     @Autowired
     private TrackDao trackDao;
+    @Autowired
+    private User2Dao user2Dao;
+
     @Override
-    public List<Track> getItemCF(User2 user2) throws IOException {
+    public List<Track> getItemCF(User2 post) throws IOException {
+        User2 user2 = user2Dao.getUser2ByName(post);
         //找到user2的信息
         List<Track> tracks = ItemCFJobRunner.getRecommend(user2);
         //返回该用户的推荐列表前100个
@@ -35,7 +40,7 @@ public class ItemCFImpl implements ItemCF {
                     return -1;
             }
         };
-        Collections.sort(tracks,comparator);
+        Collections.sort(tracks, comparator);
         List<Track> trackList;
         if (tracks.size() > 100)
             trackList = tracks.subList(0, 100);
