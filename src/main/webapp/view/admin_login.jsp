@@ -939,7 +939,7 @@
             processData: false,
             success: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem";
+                window.location.href="http://localhost:8080/MusicRecommenderSystem/adminmain";
             },
             error: function (data) {
                 alert(data.message);
