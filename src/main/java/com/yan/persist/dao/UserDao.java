@@ -24,4 +24,6 @@ public interface UserDao {
     void deleteUser(User user);
 
     void updatePwd(User user);
+
+    ArrayList<User> getAll();
 }

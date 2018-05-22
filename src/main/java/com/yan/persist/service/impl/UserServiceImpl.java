@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -67,6 +68,11 @@ public class UserServiceImpl implements UserService {
             throw new MyException(Consts.USER_NOT_EXIST, "0");
         post.setPassword(MD5.md5(post.getPassword()));
         userDao.updatePwd(post);
+    }
+
+    @Override
+    public ArrayList<User> getAll() {
+        return userDao.getAll();
     }
 
 }
