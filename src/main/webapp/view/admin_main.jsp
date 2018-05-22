@@ -1,4 +1,5 @@
 <%@ page import="com.yan.persist.entity.User" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://sf13265748.jz.fkw.com/signup.jsp?url=%2F -->
@@ -15,6 +16,9 @@
             padding-top: 56.25%
         }
     </style>
+
+    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap-theme.css"/>
     <script src="js/funPanel.min.js"></script>
     <script src="js/jquery-menu-aim.min.js"></script>
     <script src="js/city2.min.js"></script>
@@ -35,7 +39,7 @@
     <script src="js/video.min.js"></script>
     <script src="js/module_shoppingCart.min.js"></script>
 
-    <title>注册</title>
+    <title>管理员管理</title>
 
     <meta id="_TOKEN" value="6c8b68f59d1bfaeeff3b64376fc4ebde">
 
@@ -272,10 +276,6 @@
     <link rel="stylesheet" type="text/css" href="resource/css/faiSettingPanel.min.css">
 </head>
 <body class="g_bodyManage g_locale2052   ">
-<%
-    User user = (User)request.getAttribute("user");
-%>
-
 <script type="text/javascript" src="resource/css/jzUtils.min.js"></script>
 
 
@@ -314,7 +314,7 @@
     baiduCollecting = false;
     hasTLDomain = false;
 </script>
-
+<% ArrayList<String> performance = (ArrayList<String>) request.getAttribute("performance"); %>
 <div id="g_main" class="g_main g_col17 g_mainManage" style="top:51px">
     <div id="web" class="g_web g_webManage" style="width: 100%;">
         <table class="webTopTable" cellpadding="0" cellspacing="0">
@@ -423,51 +423,16 @@
                                                         <td class="navCenterContent" id="navCenterContent" valign="top"
                                                             align="left">
                                                             <div id="navCenter" class="navCenter" style="width: 450px;">
-                                                                <div class="itemPrev" style="display: none;"></div>
-                                                                <div class="itemContainer">
-                                                                    <table title="" class="item itemCol2 itemIndex1"
-                                                                           cellpadding="0" cellspacing="0" colid="2"
-                                                                           id="nav2">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;"
-                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/recommend"><span
-                                                                                    class="itemName0">发现音乐</span></a>
-                                                                            </td>
-                                                                            <td class="itemRight"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <div class="itemSep"></div>
-                                                                    <table title="" class="item itemCol103 itemIndex2"
-                                                                           cellpadding="0" cellspacing="0" colid="103"
-                                                                           id="nav104">
-                                                                        <tbody style="text-align: center">
-                                                                        <tr>
-                                                                            <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true"
-                                                                                                      style="outline:none;"
-                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/recommend"><span
-                                                                                    class="itemName0">我的音乐</span></a>
-                                                                            </td>
-                                                                            <td class="itemRight"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103" id="nav103">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0" style="color: red">个人信息</span></a>
-                                                                            </td>
-                                                                            <td class="itemRight"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                <div class="itemNext" style="display: none;"></div>
+                                                                <ul class="nav nav-pills" style="top:40px;left:80px">
+                                                                    <li role="presentation" class="active"
+                                                                        style="background-color: red;border-radius: 10px">
+                                                                        <a style="background-color: red;"
+                                                                           href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
+                                                                    </li>
+                                                                    <li role="presentation"><a href="http://localhost:8080/MusicRecommenderSystem/usermanage">用户管理</a></li>
+                                                                    <li role="presentation"><a href="#">音乐推荐</a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </td>
                                                         <td class="navRight"></td>
@@ -590,23 +555,7 @@
                                                                                         <td class="titleCenter titleCenter27"
                                                                                             valign="top">
                                                                                             <div class="titleText titleText27">
-                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">个人信息</span>
-                                                                                                <div class="bannerTextOutWrap j_doubleTitleSkin">
-                                                                                                    <span class="bannerTextInnerWrap"><span
-                                                                                                            class="doubleTitleWrap doubleTitleWrap27"><p
-                                                                                                            class="mainTitleWrap"><span
-                                                                                                            class="mainTitle_fontIcon "
-                                                                                                            style=""></span><span
-                                                                                                            class="fk_mainTitle mainTitle mainTitle27">个人信息</span></p><p
-                                                                                                            class="subTitleWrap"><span
-                                                                                                            class="subTitleLineTop dividingLine dividingLine27"></span><span
-                                                                                                            class="subTitleText fk_auxiliaryTitle auxiliaryTitle auxiliaryTitle27">副标题</span><span
-                                                                                                            class="subTitleLineBottom dividingLine dividingLine27"></span></p><p
-                                                                                                            class="titleUnderAidLine0 dividingLine dividingLine27"></p></span><p
-                                                                                                            class="titleInnerAidLine0 dividingLine dividingLine27"></p><p
-                                                                                                            class="titleInnerAidLine1 dividingLine dividingLine27"></p><p
-                                                                                                            class="titleInnerAidLine dividingLineDefault dividingLineDefault27"></p></span>
-                                                                                                </div>
+                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">网站性能</span>
                                                                                             </div>
                                                                                         </td>
                                                                                         <td class="titleRight titleRight27"
@@ -636,99 +585,22 @@
                                                                            style="" cellpadding="0" cellspacing="0">
                                                                         <tbody>
                                                                         <tr>
-                                                                            <td class="formMiddleLeft formMiddleLeft27"></td>
-                                                                            <td class="formMiddleCenter formMiddleCenter27 "
-                                                                                valign="top">
-                                                                                <div class="formMiddleContent formMiddleContent27 fk-formContentOtherPadding"
-                                                                                     tabstyle="0">
-                                                                                    <div class="J_memberSignupPanel memberSignupPanel">
-                                                                                        <form action="/reg"
-                                                                                              id="registerForm"
-                                                                                              class="memberSignupContent"
-                                                                                              cellpadding="0"
-                                                                                              cellspacing="0">
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="邮箱">邮箱：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="email"
-                                                                                                           name="邮箱"
-                                                                                                           placeholder="<%=user.getEmail()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="用户名">用户名：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="username"
-                                                                                                           name="用户名"
-                                                                                                           placeholder="<%=user.getUsername()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    修改密码：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="password"
-                                                                                                           id="password"
-                                                                                                           maxlength="50">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    确认密码：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="password"
-                                                                                                           id="repwd"
-                                                                                                           maxlength="50">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-
-
-                                                                                            <div id="memberSignupButton"
-                                                                                                 class="memberSignupItem_signupButton memberSignupItem_signupButton1">
-                                                                                                <div class="itemLeft">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <button type="button"
-                                                                                                            class="changePWD">
-                                                                                                        修改密码
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
+                                                                            <div class="panel panel-default"
+                                                                                 style="height: 300px">
+                                                                                <div class="panel-heading">
+                                                                                    <h3 class="panel-title">Panel
+                                                                                        title</h3>
                                                                                 </div>
-                                                                            </td>
-                                                                            <td class="formMiddleRight formMiddleRight27"></td>
+                                                                                <div style="overflow: scroll;height: 260px">
+                                                                                    <% for (String str : performance) { %>
+                                                                                    <div class="panel-body">
+                                                                                        <%=str%>
+                                                                                    </div>
+                                                                                    <%
+                                                                                        }
+                                                                                    %>
+                                                                                </div>
+                                                                            </div>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
@@ -970,39 +842,7 @@
 
 
 <script type="text/javascript" src="js/topBar.min.js"></script>
-<script>
-    $(".changePWD").click(function () {
-        var dataObj = new Object();
 
-        dataObj.username = $("#username").attr("placeholder");
-        dataObj.email = $("#email").attr("placeholder");
-        dataObj.password = $("#password").val();
-
-        var repwd = $("#repwd").val();
-        if(repwd != dataObj.password)
-        {
-            alert("确认密码不正确！");
-            window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-        }
-        $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem/changepwd",
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(dataObj),
-            cache: false,
-            processData: false,
-            success: function (data) {
-                alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-            },
-            error: function (data) {
-                alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-            },
-        })
-    })
-</script>
 
 </body>
 </html>
