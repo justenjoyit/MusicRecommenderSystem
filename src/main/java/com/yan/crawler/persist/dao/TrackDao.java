@@ -30,4 +30,6 @@ public interface TrackDao {
     void deleteUserTrack(@Param("tracks") List<Track> tracks);
 
     ArrayList<Track> select(@Param("tracks") List<Track> tracks);
+
+    Track selectTrack(int id);
 }

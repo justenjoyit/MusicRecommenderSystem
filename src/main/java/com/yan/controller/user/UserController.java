@@ -1,5 +1,6 @@
 package com.yan.controller.user;
 
+import com.yan.crawler.data.Track;
 import com.yan.persist.data.JsonResult;
 import com.yan.persist.entity.User;
 import com.yan.persist.service.UserService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * Created by YZT on 2018/5/21.
@@ -82,6 +84,12 @@ public class UserController {
         return "upload";
     }
 
+    /**
+     * 上传文件
+     *
+     * @param multipartFiles
+     * @return
+     */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public JsonResult upload(@RequestParam("file") MultipartFile multipartFiles) {
         JsonResult jsonResult = new JsonResult();
@@ -92,7 +100,7 @@ public class UserController {
             return jsonResult;
         }
         try {
-            userService.upload((String)currentUser.getPrincipal(),multipartFiles);
+            userService.upload((String) currentUser.getPrincipal(), multipartFiles);
         } catch (Exception e) {
             jsonResult.setErrorCode("1");
             jsonResult.setMessage(e.getMessage());
@@ -102,5 +110,25 @@ public class UserController {
         jsonResult.setErrorCode("0");
         jsonResult.setMessage("上传成功");
         return jsonResult;
+    }
+
+    @RequestMapping(value = "/userfavorite", method = RequestMethod.GET)
+    public String favor() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            return "login";
+        }
+        return "user_favorite";
+    }
+
+    @RequestMapping(value = "/favor", method = RequestMethod.GET)
+    public String favor(HttpServletRequest request) {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            return "login";
+        }
+        ArrayList<Track> tracks = userService.getFavor((String) currentUser.getPrincipal());
+        request.setAttribute("tracks", tracks);
+        return "user_favorite";
     }
 }

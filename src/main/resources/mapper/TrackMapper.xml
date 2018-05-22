@@ -81,4 +81,9 @@
         </foreach>
         )
     </select>
+
+    <select id="selectTrack" parameterType="int" resultType="Track">
+        SELECT * FROM track
+        WHERE id = #{id}
+    </select>
 </mapper>

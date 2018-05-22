@@ -258,9 +258,7 @@
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
                                                                                                       style="outline:none;font-size:  16px;color:  #2b2b2b;text-align:  center;min-width:  60px;text-decoration:  none;"
-                                                                                                      href="http://sf13265748.jz.fkw.com/col.jsp?id=103"
-                                                                                                      target="_self"
-                                                                                                      onclick="return false;"><span
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/favor"><span
                                                                                     class="itemName0">我的音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>

@@ -449,7 +449,7 @@
                                                                             <td class="itemLeft"></td>
                                                                             <td class="itemCenter"><a hidefocus="true"
                                                                                                       style="outline:none;"
-                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/recommend"><span
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/favor"><span
                                                                                     class="itemName0">我的音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>

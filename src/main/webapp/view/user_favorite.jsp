@@ -1,4 +1,6 @@
 <%@ page import="com.yan.persist.entity.User" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.yan.crawler.data.Track" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://sf13265748.jz.fkw.com/signup.jsp?url=%2F -->
@@ -15,6 +17,9 @@
             padding-top: 56.25%
         }
     </style>
+
+    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../resource/css/bootstrap-theme.css"/>
     <script src="js/funPanel.min.js"></script>
     <script src="js/jquery-menu-aim.min.js"></script>
     <script src="js/city2.min.js"></script>
@@ -35,7 +40,7 @@
     <script src="js/video.min.js"></script>
     <script src="js/module_shoppingCart.min.js"></script>
 
-    <title>注册</title>
+    <title>管理员管理</title>
 
     <meta id="_TOKEN" value="6c8b68f59d1bfaeeff3b64376fc4ebde">
 
@@ -272,10 +277,6 @@
     <link rel="stylesheet" type="text/css" href="resource/css/faiSettingPanel.min.css">
 </head>
 <body class="g_bodyManage g_locale2052   ">
-<%
-    User user = (User)request.getAttribute("user");
-%>
-
 <script type="text/javascript" src="resource/css/jzUtils.min.js"></script>
 
 
@@ -314,7 +315,7 @@
     baiduCollecting = false;
     hasTLDomain = false;
 </script>
-
+<% ArrayList<Track> tracks = (ArrayList) request.getAttribute("tracks");%>
 <div id="g_main" class="g_main g_col17 g_mainManage" style="top:51px">
     <div id="web" class="g_web g_webManage" style="width: 100%;">
         <table class="webTopTable" cellpadding="0" cellspacing="0">
@@ -450,27 +451,38 @@
                                                                             <td class="itemCenter"><a hidefocus="true"
                                                                                                       style="outline:none;"
                                                                                                       href="http://localhost:8080/MusicRecommenderSystem/favor"><span
-                                                                                    class="itemName0">我的音乐</span></a>
+                                                                                    class="itemName0" style="color: red">我的音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103" id="nav103">
+                                                                    <table title="" class="item itemCol103 itemIndex2"
+                                                                           cellpadding="0" cellspacing="0" colid="103"
+                                                                    >
                                                                         <tbody>
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0">个人信息</span></a>
+                                                                            <td class="itemCenter"><a hidefocus="true"
+                                                                                                      style="outline:none;"
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span
+                                                                                    class="itemName0"
+                                                                                    >个人信息</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103">
+                                                                    <table title="" class="item itemCol103 itemIndex2"
+                                                                           cellpadding="0" cellspacing="0" colid="103"
+                                                                           id="nav103">
                                                                         <tbody>
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/upload"><span class="itemName0" style="color: red">上传音乐</span></a>
+                                                                            <td class="itemCenter"><a hidefocus="true"
+                                                                                                      style="outline:none;"
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/upload"><span
+                                                                                    class="itemName0">上传音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
@@ -523,110 +535,94 @@
         <table id="webContainerTable" class="webContainerTable" cellpadding="0" cellspacing="0">
             <tbody>
             <tr>
-                <td align="center">
+                <td align="center" style="width: 100px;">
                     <div id="webContainer" class="webContainer">
-                        <div id="container" class="container">
-                            <table class="containerMiddle" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                <tr valign="top">
-                                    <td id="containerMiddleLeft" class="containerMiddleLeft">
+                <td id="container" class="container">
+                    <table class="containerMiddle" cellpadding="0" cellspacing="0" style="width: 1170px;">
+                        <tbody>
+                        <tr valign="top">
+                            <td id="containerMiddleLeft" class="containerMiddleLeft">
 
 
-                                    </td>
+                            </td>
 
-                                    <td class="containerMiddleCenter">
-                                        <div id="containerMiddleCenterTop" class="containerMiddleCenterTop">
+                            <td class="containerMiddleCenter">
+                                <div id="containerMiddleCenterTop" class="containerMiddleCenterTop">
 
-                                        </div>
+                                </div>
 
-                                        <div id="containerForms" class="containerForms">
-                                            <div id="topForms" class="column forms mainForms topForms ui-sortable"
-                                                 style="display: none;">
+                                <div id="containerForms" class="containerForms">
+                                    <div id="topForms" class="column forms mainForms topForms ui-sortable"
+                                         style="display: none;">
 
-                                            </div>
+                                    </div>
 
-                                            <table class="containerFormsMiddle" cellpadding="0" cellspacing="0">
-                                                <tbody>
-                                                <tr>
-                                                    <td valign="top" id="containerFormsLeft" class="containerFormsLeft"
-                                                        style="display:none">
-                                                        <div class="containerFormsLeftTop">
-                                                        </div>
-                                                        <div id="leftForms"
-                                                             class="column forms sideForms leftForms ui-sortable">
+                                    <table class="containerFormsMiddle" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td valign="top" id="containerFormsLeft" class="containerFormsLeft"
+                                                style="display:none">
+                                                <div class="containerFormsLeftTop">
+                                                </div>
+                                                <div id="leftForms"
+                                                     class="column forms sideForms leftForms ui-sortable">
 
-                                                        </div>
-                                                        <div class="containerFormsLeftBottom">
-                                                        </div>
-                                                    </td>
+                                                </div>
+                                                <div class="containerFormsLeftBottom">
+                                                </div>
+                                            </td>
 
-                                                    <td valign="top" id="containerFormsCenter"
-                                                        class="containerFormsCenter">
+                                            <td valign="top" id="containerFormsCenter"
+                                                class="containerFormsCenter">
 
-                                                        <div id="centerTopForms"
-                                                             class="column forms mainForms centerTopForms ui-sortable">
-                                                            <div id="module27" _indexclass="formIndex1" _moduletype="27"
-                                                                 _modulestyle="52" _moduleid="27"
-                                                                 class="form form27 formIndex1 formStyle52 extformClass ui-resizable ui-resizable-autohide"
-                                                                 title="" _sys="0" _banid="" style="" _side="0"
-                                                                 _intab="0" _inmulmcol="0" _infullmeasure="0"
-                                                                 _inpack="0" _inpopupzone="0" _autoheight="1"
-                                                                 _global="false" _independent="false"
-                                                                 data-entered-resizable="true">
-                                                                <div class="formWrap formWrap27">
-                                                                    <table class="formTop formTop27" cellpadding="0"
-                                                                           cellspacing="0">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="left"></td>
-                                                                            <td class="center"></td>
-                                                                            <td class="right"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <table class="formBanner formBanner27"
-                                                                           cellpadding="0" cellspacing="0" style="">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="left left27"></td>
-                                                                            <td class="center center27" valign="top">
-                                                                                <table cellpadding="0" cellspacing="0"
-                                                                                       class="formBannerTitle formBannerTitle27">
-                                                                                    <tbody>
-                                                                                    <tr>
-                                                                                        <td class="titleLeft titleLeft27"
-                                                                                            valign="top">
-                                                                                        </td>
-                                                                                        <td class="titleCenter titleCenter27"
-                                                                                            valign="top">
-                                                                                            <div class="titleText titleText27">
-                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">个人信息</span>
-                                                                                                <div class="bannerTextOutWrap j_doubleTitleSkin">
-                                                                                                    <span class="bannerTextInnerWrap"><span
-                                                                                                            class="doubleTitleWrap doubleTitleWrap27"><p
-                                                                                                            class="mainTitleWrap"><span
-                                                                                                            class="mainTitle_fontIcon "
-                                                                                                            style=""></span><span
-                                                                                                            class="fk_mainTitle mainTitle mainTitle27">个人信息</span></p><p
-                                                                                                            class="subTitleWrap"><span
-                                                                                                            class="subTitleLineTop dividingLine dividingLine27"></span><span
-                                                                                                            class="subTitleText fk_auxiliaryTitle auxiliaryTitle auxiliaryTitle27">副标题</span><span
-                                                                                                            class="subTitleLineBottom dividingLine dividingLine27"></span></p><p
-                                                                                                            class="titleUnderAidLine0 dividingLine dividingLine27"></p></span><p
-                                                                                                            class="titleInnerAidLine0 dividingLine dividingLine27"></p><p
-                                                                                                            class="titleInnerAidLine1 dividingLine dividingLine27"></p><p
-                                                                                                            class="titleInnerAidLine dividingLineDefault dividingLineDefault27"></p></span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td class="titleRight titleRight27"
-                                                                                            valign="top">
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                    </tbody>
-                                                                                </table>
-                                                                                <div class="formBannerOther formBannerOther27">
-                                                                                    <div class="formBannerBtn formBannerBtn27">
+                                                <div id="centerTopForms"
+                                                     class="column forms mainForms centerTopForms ui-sortable">
+                                                    <div id="module27" _indexclass="formIndex1" _moduletype="27"
+                                                         _modulestyle="52" _moduleid="27"
+                                                         class="form form27 formIndex1 formStyle52 extformClass ui-resizable ui-resizable-autohide"
+                                                         title="" _sys="0" _banid="" style="" _side="0"
+                                                         _intab="0" _inmulmcol="0" _infullmeasure="0"
+                                                         _inpack="0" _inpopupzone="0" _autoheight="1"
+                                                         _global="false" _independent="false"
+                                                         data-entered-resizable="true">
+                                                        <div class="formWrap formWrap27">
+                                                            <table class="formTop formTop27" cellpadding="0"
+                                                                   cellspacing="0">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td class="left"></td>
+                                                                    <td class="center"></td>
+                                                                    <td class="right"></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table class="formBanner formBanner27"
+                                                                   cellpadding="0" cellspacing="0" style="">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td class="left left27"></td>
+                                                                    <td class="center center27" valign="top">
+                                                                        <table cellpadding="0" cellspacing="0"
+                                                                               class="formBannerTitle formBannerTitle27">
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td class="titleLeft titleLeft27"
+                                                                                    valign="top">
+                                                                                </td>
+                                                                                <td class="titleCenter titleCenter27"
+                                                                                    valign="top">
+                                                                                    <div class="titleText titleText27">
+                                                                                        <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">我的音乐</span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td class="titleRight titleRight27"
+                                                                                    valign="top">
+                                                                                </td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <div class="formBannerOther formBannerOther27">
+                                                                            <div class="formBannerBtn formBannerBtn27">
                                                                                         <span style="_display:inline-block;_position:relative;">
                                                                                             <a hidefocus="true"
                                                                                                class="g_close">
@@ -635,171 +631,123 @@
                                                                                                 </span>
                                                                                             </a>
 </span></div>
-                                                                                    &nbsp;
+                                                                            &nbsp;
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="right right27"></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table class="formMiddle formMiddle27 memberSignupMiddle"
+                                                                   style="" cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <div class="panel panel-default"
+                                                                         style="height: 300px">
+                                                                        <div class="panel-heading">
+                                                                            <h3 class="panel-title">Panel
+                                                                                title</h3>
+                                                                        </div>
+
+                                                                        <div style="overflow: scroll;height: 260px">
+                                                                            <% for (Track track : tracks) { %>
+                                                                            <div class="panel-body">
+                                                                                <div style="background-color:#f5b6a2;height:30px;width: 40%;float: left;padding-left: 15px;line-height: 2.5"><%=track.getArtist() %>
                                                                                 </div>
-                                                                            </td>
-                                                                            <td class="right right27"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <table class="formMiddle formMiddle27 memberSignupMiddle"
-                                                                           style="" cellpadding="0" cellspacing="0">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="formMiddleLeft formMiddleLeft27"></td>
-                                                                            <td class="formMiddleCenter formMiddleCenter27 "
-                                                                                valign="top">
-                                                                                <div class="formMiddleContent formMiddleContent27 fk-formContentOtherPadding"
-                                                                                     tabstyle="0">
-                                                                                    <div class="J_memberSignupPanel memberSignupPanel">
-                                                                                        <form method="post" action="http://localhost:8080/MusicRecommenderSystem/upload" enctype="multipart/form-data">
-                                                                                            选择一个文件:
-                                                                                            <input type="file" name="file" />
-                                                                                            <br/><br/>
-                                                                                            <input type="submit" value="上传" />
-                                                                                        </form>
-                                                                                    </div>
+                                                                                <div style="background-color:#f5b6a2;height:30px;width: 40%;float: left;padding-left: 15px;line-height: 2.5"><%=track.getName() %>
                                                                                 </div>
-                                                                            </td>
-                                                                            <td class="formMiddleRight formMiddleRight27"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <table class="formBottom formBottom27"
-                                                                           cellpadding="0" cellspacing="0">
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td class="left left27"></td>
-                                                                            <td class="center center27"></td>
-                                                                            <td class="right right27"></td>
-                                                                        </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <div class="clearfloat clearfloat27"></div>
-                                                                </div>
-                                                                <div class="fk-paddingMarginWrap J_paddingMarginWrap">
-                                                                    <div class="top-area J_setting_area J_top_area"
-                                                                         direction="top" style="width: 1200px;">
-                                                                        <div class="top-line J_top_line"></div>
-                                                                        <div class="fk-top-setting-btn J_top_setting_btn J_setting_btn_box"
-                                                                             style="display:none"><a
-                                                                                class="fk-top-padding-btn J_top_padding_btn fk-setting-btn ui-draggable"></a><a
-                                                                                class="fk-top-margin-btn J_top_margin_btn fk-setting-btn ui-draggable"></a>
+                                                                                <div style="background-color:#f5b6a2;height:30px;width: 20%;float: left;padding-left: 15px;line-height: 2.5">
+                                                                                    <button style="height: 30px;padding:5px;font-size:2px"
+                                                                                            class="btn btn-default btn-lg"
+                                                                                            onclick="window.location.href='<%=track.getUrl() %>'">
+                                                                                        <span class="glyphicon glyphicon-play-circle"></span>试听
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                            <%
+                                                                                }
+                                                                            %>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="left-area J_setting_area J_left_area"
-                                                                         direction="left"
-                                                                         style="height: 374px; top: 0px;">
-                                                                        <div class="left-line J_left_line"></div>
-                                                                        <div class="fk-left-setting-btn J_left_setting_btn J_setting_btn_box"
-                                                                             style="display:none"><a
-                                                                                class="fk-left-padding-btn J_left_padding_btn fk-setting-btn ui-draggable"></a><a
-                                                                                class="fk-left-margin-btn J_left_margin_btn fk-setting-btn ui-draggable"></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="right-area J_setting_area J_right_area"
-                                                                         direction="right"
-                                                                         style="left: 1190px; height: 374px; top: 0px;">
-                                                                        <div class="right-line J_right_line"></div>
-                                                                        <div class="fk-right-setting-btn J_right_setting_btn J_setting_btn_box"
-                                                                             style="display:none"><a
-                                                                                class="fk-right-padding-btn J_right_padding_btn fk-setting-btn ui-draggable"></a><a
-                                                                                class="fk-right-margin-btn J_right_margin_btn fk-setting-btn ui-draggable"></a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="bottom-area J_setting_area J_bottom_area"
-                                                                         direction="bottom"
-                                                                         style="width: 1200px; top: 463px;">
-                                                                        <div class="bottom-line J_bottom_line"></div>
-                                                                        <div class="fk-bottom-setting-btn J_bottom_setting_btn J_setting_btn_box"
-                                                                             style="display:none"><a
-                                                                                class="fk-bottom-padding-btn J_bottom_padding_btn fk-setting-btn ui-draggable"></a><a
-                                                                                class="fk-module-height-btn J_bottom_height_btn ui-draggable"></a><a
-                                                                                class="fk-bottom-margin-btn J_bottom_margin_btn fk-setting-btn ui-draggable"></a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="ui-resizable-handle ui-resizable-s ui-resizable-bottomLine"
-                                                                     _faiscotip="按住鼠标可随意调整高度" fktipoffsettype="mouse"
-                                                                     fktipxalign="center" fktipy="10"
-                                                                     style="z-index: 1000; display: none; bottom: 0px; left: 0px; width: 1200px;">
-                                                                    <div class="ui-resizable-line  ui-resizable-bline"></div>
-                                                                    <div class="ui-resizable-icon  ui-resizable-blIcon2 ui-resizable-icon3"></div>
-                                                                    <div class="ui-resizable-icon  ui-resizable-bcIcon ui-resizable-icon3"></div>
-                                                                    <div class="ui-resizable-icon  ui-resizable-brIcon2 ui-resizable-icon3"></div>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <table class="formBottom formBottom27"
+                                                                   cellpadding="0" cellspacing="0">
+                                                                <tbody>
+                                                                <tr>
+                                                                    <td class="left left27"></td>
+                                                                    <td class="center center27"></td>
+                                                                    <td class="right right27"></td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <div class="clearfloat clearfloat27"></div>
+                                                        </div>
+                                                        <div class="fk-paddingMarginWrap J_paddingMarginWrap">
+                                                            <div class="top-area J_setting_area J_top_area"
+                                                                 direction="top" style="width: 1200px;">
+                                                                <div class="top-line J_top_line"></div>
+                                                                <div class="fk-top-setting-btn J_top_setting_btn J_setting_btn_box"
+                                                                     style="display:none"><a
+                                                                        class="fk-top-padding-btn J_top_padding_btn fk-setting-btn ui-draggable"></a><a
+                                                                        class="fk-top-margin-btn J_top_margin_btn fk-setting-btn ui-draggable"></a>
                                                                 </div>
                                                             </div>
-
-
-                                                        </div>
-                                                        <div class="containerFormsCenterMiddle J_containerFormsCenterMiddle">
-                                                            <div id="middleLeftForms"
-                                                                 class="column forms mainForms middleLeftForms ui-sortable"
-                                                                 style="display: none; padding-right: 24px;">
-
+                                                            <div class="left-area J_setting_area J_left_area"
+                                                                 direction="left"
+                                                                 style="height: 374px; top: 0px;">
+                                                                <div class="left-line J_left_line"></div>
+                                                                <div class="fk-left-setting-btn J_left_setting_btn J_setting_btn_box"
+                                                                     style="display:none"><a
+                                                                        class="fk-left-padding-btn J_left_padding_btn fk-setting-btn ui-draggable"></a><a
+                                                                        class="fk-left-margin-btn J_left_margin_btn fk-setting-btn ui-draggable"></a>
+                                                                </div>
                                                             </div>
-                                                            <div id="middleRightForms"
-                                                                 class="column forms mainForms middleRightForms ui-sortable"
-                                                                 style="display: none;">
-
+                                                            <div class="right-area J_setting_area J_right_area"
+                                                                 direction="right"
+                                                                 style="left: 1190px; height: 374px; top: 0px;">
+                                                                <div class="right-line J_right_line"></div>
+                                                                <div class="fk-right-setting-btn J_right_setting_btn J_setting_btn_box"
+                                                                     style="display:none"><a
+                                                                        class="fk-right-padding-btn J_right_padding_btn fk-setting-btn ui-draggable"></a><a
+                                                                        class="fk-right-margin-btn J_right_margin_btn fk-setting-btn ui-draggable"></a>
+                                                                </div>
                                                             </div>
-                                                            <div class="clearfloat"></div>
+                                                            <div class="bottom-area J_setting_area J_bottom_area"
+                                                                 direction="bottom"
+                                                                 style="width: 1200px; top: 463px;">
+                                                                <div class="bottom-line J_bottom_line"></div>
+                                                                <div class="fk-bottom-setting-btn J_bottom_setting_btn J_setting_btn_box"
+                                                                     style="display:none"><a
+                                                                        class="fk-bottom-padding-btn J_bottom_padding_btn fk-setting-btn ui-draggable"></a><a
+                                                                        class="fk-module-height-btn J_bottom_height_btn ui-draggable"></a><a
+                                                                        class="fk-bottom-margin-btn J_bottom_margin_btn fk-setting-btn ui-draggable"></a>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div id="centerBottomForms"
-                                                             class="column forms mainForms centerBottomForms ui-sortable"
-                                                             style="display: none;">
-
+                                                        <div class="ui-resizable-handle ui-resizable-s ui-resizable-bottomLine"
+                                                             _faiscotip="按住鼠标可随意调整高度" fktipoffsettype="mouse"
+                                                             fktipxalign="center" fktipy="10"
+                                                             style="z-index: 1000; display: none; bottom: 0px; left: 0px; width: 1200px;">
+                                                            <div class="ui-resizable-line  ui-resizable-bline"></div>
+                                                            <div class="ui-resizable-icon  ui-resizable-blIcon2 ui-resizable-icon3"></div>
+                                                            <div class="ui-resizable-icon  ui-resizable-bcIcon ui-resizable-icon3"></div>
+                                                            <div class="ui-resizable-icon  ui-resizable-brIcon2 ui-resizable-icon3"></div>
                                                         </div>
-                                                    </td>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                                    <td valign="top" id="containerFormsRight"
-                                                        class="containerFormsRight" style="display:none">
-                                                        <div class="containerFormsRightTop">
-                                                        </div>
-                                                        <div id="rightForms"
-                                                             class="column forms sideForms rightForms ui-sortable">
-
-                                                        </div>
-                                                        <div class="containerFormsRightBottom">
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <div id="bottomForms" class="column forms mainForms bottomForms ui-sortable"
-                                                 style="display: none;">
-
-                                            </div>
-
-                                            <div id="containerPlaceholder" class="containerPlaceholder"
-                                                 style="height: 0px;"></div>
-
-                                        </div>
-
-                                        <div id="containerMiddleCenterBottom" class="containerMiddleCenterBottom">
-                                        </div>
-
-                                    </td>
-
-                                    <td id="containerMiddleRight" class="containerMiddleRight"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-                            <table class="containerBottom" cellpadding="0" cellspacing="0">
-                                <tbody>
-                                <tr valign="top">
-                                    <td class="left"></td>
-                                    <td class="center"></td>
-                                    <td class="right"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-
-                    </div>
+                            </td>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </td>
             </tr>
             </tbody>
@@ -862,8 +810,83 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="containerFormsCenterMiddle J_containerFormsCenterMiddle">
+        <div id="middleLeftForms"
+             class="column forms mainForms middleLeftForms ui-sortable"
+             style="display: none; padding-right: 24px;">
+
+        </div>
+        <div id="middleRightForms"
+             class="column forms mainForms middleRightForms ui-sortable"
+             style="display: none;">
+
+        </div>
+        <div class="clearfloat"></div>
+    </div>
+    <div id="centerBottomForms"
+         class="column forms mainForms centerBottomForms ui-sortable"
+         style="display: none;">
 
     </div>
+    </td>
+
+    <td valign="top" id="containerFormsRight"
+        class="containerFormsRight" style="display:none">
+        <div class="containerFormsRightTop">
+        </div>
+        <div id="rightForms"
+             class="column forms sideForms rightForms ui-sortable">
+
+        </div>
+        <div class="containerFormsRightBottom">
+        </div>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+    <div id="bottomForms" class="column forms mainForms bottomForms ui-sortable"
+         style="display: none;">
+
+    </div>
+
+    <div id="containerPlaceholder" class="containerPlaceholder"
+         style="height: 0px;"></div>
+
+</div>
+
+<div id="containerMiddleCenterBottom" class="containerMiddleCenterBottom">
+</div>
+
+</td>
+
+<td id="containerMiddleRight" class="containerMiddleRight"></td>
+</tr>
+</tbody>
+</table>
+
+<table class="containerBottom" cellpadding="0" cellspacing="0">
+    <tbody>
+    <tr valign="top">
+        <td class="left"></td>
+        <td class="center"></td>
+        <td class="right"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</div>
 
 
 </div>
@@ -903,39 +926,7 @@
 
 
 <script type="text/javascript" src="js/topBar.min.js"></script>
-<script>
-    $(".changePWD").click(function () {
-        var dataObj = new Object();
 
-        dataObj.username = $("#username").attr("placeholder");
-        dataObj.email = $("#email").attr("placeholder");
-        dataObj.password = $("#password").val();
-
-        var repwd = $("#repwd").val();
-        if(repwd != dataObj.password)
-        {
-            alert("确认密码不正确！");
-            window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-        }
-        $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem/changepwd",
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(dataObj),
-            cache: false,
-            processData: false,
-            success: function (data) {
-                alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-            },
-            error: function (data) {
-                alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/userinfo";
-            },
-        })
-    })
-</script>
 
 </body>
 </html>

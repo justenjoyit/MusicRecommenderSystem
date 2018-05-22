@@ -1,5 +1,6 @@
 package com.yan.persist.service;
 
+import com.yan.crawler.data.Track;
 import com.yan.persist.entity.User;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,5 +24,7 @@ public interface UserService {
 
     ArrayList<User> getAll();
 
-    void upload(String email,MultipartFile multipartFile) throws IOException;
+    void upload(String email, MultipartFile multipartFile) throws IOException;
+
+    ArrayList<Track> getFavor(String name);
 }

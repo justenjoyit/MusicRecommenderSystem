@@ -1,7 +1,9 @@
 package com.yan.persist.service.impl;
 
+import com.yan.crawler.data.Track;
 import com.yan.crawler.data.User2;
 import com.yan.crawler.data.UserTrack;
+import com.yan.crawler.persist.dao.TrackDao;
 import com.yan.crawler.persist.dao.User2Dao;
 import com.yan.crawler.persist.dao.UserTrackDao;
 import com.yan.exception.MyException;
@@ -33,6 +35,8 @@ public class UserServiceImpl implements UserService {
     private UserTrackDao userTrackDao;
     @Autowired
     private User2Dao user2Dao;
+    @Autowired
+    private TrackDao trackDao;
 
     /**
      * 用户注册
@@ -118,6 +122,23 @@ public class UserServiceImpl implements UserService {
         }
         //存入到数据库
         userTrackDao.save(userTracks);
+    }
+
+    @Override
+    public ArrayList<Track> getFavor(String name) {
+        User2 user2 = new User2();
+        user2.setName(name);
+        user2 = user2Dao.getUser2ByName(user2);
+        if (user2 == null)
+            throw new MyException(Consts.USER_NOT_EXIST, "1");
+        ArrayList<UserTrack> userTracks = (ArrayList<UserTrack>) userTrackDao.selectUserTrack(user2.getId());
+        ArrayList<Track> tracks = new ArrayList<>();
+        for (UserTrack userTrack : userTracks) {
+            Track track = trackDao.selectTrack(userTrack.getTrackID());
+            if (track != null)
+                tracks.add(track);
+        }
+        return tracks;
     }
 
 }
