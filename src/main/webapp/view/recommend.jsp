@@ -325,8 +325,6 @@
             <tr align="center" valign="top">
                 <td height="37" colspan="9"><h2 align="center">推荐音乐</h2></td>
             </tr>
-            <tr>
-
             <tr valign="top">
                 <td height="258" width="100%">
                     <table align="center" width="100%" border="1" id="planTable2"
@@ -361,7 +359,6 @@
                 </td>
             </tr>
 
-            </tr>
 
             <tr>
                 <td width="6%" height="19">&nbsp;</td>

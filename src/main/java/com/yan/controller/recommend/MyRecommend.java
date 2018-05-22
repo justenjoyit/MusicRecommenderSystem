@@ -42,7 +42,7 @@ public class MyRecommend {
     @RequestMapping(value = "/recommend", method = RequestMethod.GET)
     public String recommend() {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated())
+        if (!currentUser.isAuthenticated())
             return "login";
         return "main_recommend";
     }
@@ -66,7 +66,7 @@ public class MyRecommend {
 //                UserCFJobRunner.run();
 
             User2 user2 = new User2();
-            user2.setName((String)currentUser.getPrincipal());
+            user2.setName((String) currentUser.getPrincipal());
             //返回该用户的推荐列表
             tracks = userCF.getUserCF(user2);
             request.setAttribute("recommend", tracks);
@@ -79,6 +79,40 @@ public class MyRecommend {
 //        jsonResult.setData(tracks);
 //        return jsonResult;
         return "recommend";
+    }
+
+    @RequestMapping(value = "/recommendsearch", method = RequestMethod.GET)
+//    @ResponseBody
+    public String userCF(String name, HttpServletRequest request) {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            return "login";
+        }
+//        JsonResult jsonResult = new JsonResult();
+        List<Track> tracks;
+        try {
+            //首先判断是否需要重新计算基于用户的推荐列表
+//            if (caculate_flag) {
+//                score.caculate();
+//                caculate_flag = false;
+//            }
+//            if (userCF_flag)
+//                UserCFJobRunner.run();
+
+            User2 user2 = new User2();
+            user2.setName(name);
+            //返回该用户的推荐列表
+            tracks = userCF.getUserCF(user2);
+            request.setAttribute("recommend", tracks);
+        } catch (Exception e) {
+//            jsonResult.setErrorCode("1");
+//            jsonResult.setMessage(e.getMessage());
+//            return jsonResult;
+        }
+//        jsonResult.setErrorCode("0");
+//        jsonResult.setData(tracks);
+//        return jsonResult;
+        return "admin_userCF_recommend";
     }
 
     @RequestMapping(value = "/showItemCF", method = RequestMethod.GET)
@@ -100,7 +134,7 @@ public class MyRecommend {
 //                ItemCFJobRunner.run();
 
             User2 user2 = new User2();
-            user2.setName((String)currentUser.getPrincipal());
+            user2.setName((String) currentUser.getPrincipal());
             //返回该用户的推荐列表
             tracks = itemCF.getItemCF(user2);
             request.setAttribute("recommend", tracks);
@@ -114,6 +148,41 @@ public class MyRecommend {
 //        jsonResult.setData(tracks);
 //        return jsonResult;
         return "recommend";
+    }
+
+    @RequestMapping(value = "/adminitemsearch", method = RequestMethod.GET)
+//    @ResponseBody
+    public String itemCF(String name,HttpServletRequest request) {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            return "login";
+        }
+//        JsonResult jsonResult = new JsonResult();
+        List<Track> tracks;
+        try {
+            //首先判断是否需要重新计算基于用户的推荐列表
+//            if (caculate_flag) {
+//                score.caculate();
+//                caculate_flag = false;
+//            }
+//            if (itemCF_flag)
+//                ItemCFJobRunner.run();
+
+            User2 user2 = new User2();
+            user2.setName(name);
+            //返回该用户的推荐列表
+            tracks = itemCF.getItemCF(user2);
+            request.setAttribute("recommend", tracks);
+
+        } catch (Exception e) {
+//            jsonResult.setErrorCode("1");
+//            jsonResult.setMessage(e.getMessage());
+//            return jsonResult;
+        }
+//        jsonResult.setErrorCode("0");
+//        jsonResult.setData(tracks);
+//        return jsonResult;
+        return "admin_itemCF_recommend";
     }
 
 

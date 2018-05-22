@@ -426,15 +426,15 @@
                                                             <div id="navCenter" class="navCenter" style="width: 450px;">
                                                                 <ul class="nav nav-pills" style="top:40px;left:80px">
                                                                     <li role="presentation">
-                                                                        <a
-                                                                                href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
+                                                                        <a href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
                                                                     </li>
                                                                     <li role="presentation" class="active"
                                                                         style="background-color: red;border-radius: 10px">
                                                                         <a style="background-color: red"
                                                                            href="http://localhost:8080/MusicRecommenderSystem/usermanage">用户管理</a>
                                                                     </li>
-                                                                    <li role="presentation"><a href="#">音乐推荐</a>
+                                                                    <li role="presentation"><a
+                                                                            href="http://localhost:8080/MusicRecommenderSystem/adminrecommend">音乐推荐</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -606,24 +606,24 @@
                                                                         </tr>
                                                                         <tr>
                                                                                 <% ArrayList<User> users= (ArrayList)request.getAttribute("users");%>
-                                                                                    <script>
-                                                                                        function deleteUser(email) {
-                                                                                            $.ajax({
-                                                                                                url: "http://localhost:8080/MusicRecommenderSystem/userdelete?email=" + email,
-                                                                                                type: "GET",
-                                                                                                cache: false,
-                                                                                                processData: false,
-                                                                                                success: function (data) {
-                                                                                                    alert(data.message);
-                                                                                                    window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
-                                                                                                },
-                                                                                                error: function (data) {
-                                                                                                    alert(data.message);
-                                                                                                    window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
-                                                                                                },
-                                                                                            })
-                                                                                        }
-                                                                                    </script>
+                                                                            <script>
+                                                                                function deleteUser(email) {
+                                                                                    $.ajax({
+                                                                                        url: "http://localhost:8080/MusicRecommenderSystem/userdelete?email=" + email,
+                                                                                        type: "GET",
+                                                                                        cache: false,
+                                                                                        processData: false,
+                                                                                        success: function (data) {
+                                                                                            alert(data.message);
+                                                                                            window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
+                                                                                        },
+                                                                                        error: function (data) {
+                                                                                            alert(data.message);
+                                                                                            window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
+                                                                                        },
+                                                                                    })
+                                                                                }
+                                                                            </script>
                                                                         <tr valign="top">
                                                                             <td height="258" width="100%">
                                                                                 <table align="center" width="100%"

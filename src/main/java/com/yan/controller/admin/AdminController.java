@@ -191,5 +191,19 @@ public class AdminController {
         }
     }
 
+    @RequestMapping(value = "/adminrecommend",method = RequestMethod.GET)
+    public String adminRecommend(){
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated())
+            return "admin_login";
+        return "admin_recommend";
+    }
 
+    @RequestMapping(value = "/adminitemrecommend",method = RequestMethod.GET)
+    public String adminRecommendSearch(){
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated())
+            return "admin_login";
+        return "admin_recommend_search";
+    }
 }

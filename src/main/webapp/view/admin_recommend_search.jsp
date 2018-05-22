@@ -1,5 +1,7 @@
 <%@ page import="com.yan.persist.entity.User" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.yan.crawler.data.User2" %>
+<%@ page import="com.yan.crawler.data.Track" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <!-- saved from url=(0047)http://sf13265748.jz.fkw.com/signup.jsp?url=%2F -->
@@ -425,15 +427,15 @@
                                                             <div id="navCenter" class="navCenter" style="width: 450px;">
                                                                 <ul class="nav nav-pills" style="top:40px;left:80px">
                                                                     <li role="presentation">
-                                                                        <a
-                                                                                href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
+                                                                        <a href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
+                                                                    </li>
+                                                                    <li role="presentation">
+                                                                        <a ref="http://localhost:8080/MusicRecommenderSystem/usermanage">用户管理</a>
                                                                     </li>
                                                                     <li role="presentation" class="active"
                                                                         style="background-color: red;border-radius: 10px">
                                                                         <a style="background-color: red"
-                                                                           href="http://localhost:8080/MusicRecommenderSystem/usermanage">用户管理</a>
-                                                                    </li>
-                                                                    <li role="presentation"><a href="http://localhost:8080/MusicRecommenderSystem/adminrecommend">音乐推荐</a>
+                                                                           href="http://localhost:8080/MusicRecommenderSystem/adminrecommend">音乐推荐</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -552,14 +554,19 @@
                                                                                        class="formBannerTitle formBannerTitle27">
                                                                                     <tbody>
                                                                                     <tr>
-                                                                                        <td class="titleLeft titleLeft27"
-                                                                                            valign="top">
-                                                                                        </td>
                                                                                         <td class="titleCenter titleCenter27"
                                                                                             valign="top">
-                                                                                            <div class="titleText titleText27">
-                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">网站性能</span>
-                                                                                            </div>
+                                                                                            <ul class="nav nav-tabs">
+                                                                                                <li role="presentation"
+                                                                                                ><a
+                                                                                                        href="http://localhost:8080/MusicRecommenderSystem/adminrecommend">基于用户的协同过滤推荐</a>
+                                                                                                </li>
+                                                                                                <li role="presentation"
+                                                                                                    class="active">
+                                                                                                    <a href="http://localhost:8080/MusicRecommenderSystem/adminitemrecommend">基于物品的协同过滤推荐</a>
+                                                                                                </li>
+                                                                                            </ul>
+
                                                                                         </td>
                                                                                         <td class="titleRight titleRight27"
                                                                                             valign="top">
@@ -593,112 +600,17 @@
     margin-top: 20px;
 ">
                                                                                 <div class="input-group">
-                                                                                    <input id="searchcontent2"
+                                                                                    <input id="searchcontent4"
                                                                                            type="text"
                                                                                            class="form-control"
                                                                                            placeholder="Search for...">
                                                                                     <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="search2">Go!</button>
+        <button class="btn btn-default" type="button" id="search4">Go!</button>
       </span>
                                                                                 </div><!-- /input-group -->
                                                                             </div>
                                                                         </tr>
                                                                         <tr>
-                                                                            <% User user = (User)request.getAttribute("user");%>
-                                                                            <td class="formMiddleCenter formMiddleCenter27 "
-                                                                                valign="top">
-                                                                                <div class="formMiddleContent formMiddleContent27 fk-formContentOtherPadding"
-                                                                                     tabstyle="0">
-                                                                                    <div class="J_memberSignupPanel memberSignupPanel">
-                                                                                        <form action="/reg"
-                                                                                              id="registerForm"
-                                                                                              class="memberSignupContent"
-                                                                                              cellpadding="0"
-                                                                                              cellspacing="0">
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="邮箱">邮箱：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="email"
-                                                                                                           name="邮箱"
-                                                                                                           placeholder="<%=user.getEmail()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="用户名">用户名：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="username"
-                                                                                                           name="用户名"
-                                                                                                           placeholder="<%=user.getUsername()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    最后登录时间：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="text"
-                                                                                                           id="logintime"
-                                                                                                           maxlength="50"
-                                                                                                           placeholder="<%=user.getLastLogin()%>"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    状态：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="text"
-                                                                                                           id="status"
-                                                                                                           maxlength="50"
-                                                                                                           placeholder="<%=user.getStatus()%>">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-
-
-                                                                                            <div id="memberSignupButton"
-                                                                                                 class="memberSignupItem_signupButton memberSignupItem_signupButton1">
-                                                                                                <div class="itemLeft">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <button type="button"
-                                                                                                            class="changeStatus">
-                                                                                                        修改状态
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
@@ -942,32 +854,10 @@
 <script type="text/javascript" src="js/topBar.min.js"></script>
 
 <script>
-    $(".changeStatus").click(function () {
+    $("#search4").click(function () {
         var dataObj = new Object();
-        dataObj.email = $("#email").attr("placeholder");
-        dataObj.status = $("#status").val();
-        $.ajax({
-            url: "http://localhost:8080/MusicRecommenderSystem/changeStatus",
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(dataObj),
-            cache: false,
-            processData: false,
-            success: function (data) {
-                alert(data.message);
-                window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
-            },
-            error: function (data) {
-                alert(data.message);
-                window.location.href = "http://localhost:8080/MusicRecommenderSystem/usermanage";
-            },
-        })
-    })
-    $("#search2").click(function () {
-        var dataObj = new Object();
-        dataObj.email = $("#searchcontent2").val();
-        window.location.href = "http://localhost:8080/MusicRecommenderSystem/changeStatus?email=" + dataObj.email;
+        dataObj.name = $("#searchcontent4").val();
+        window.location.href = "http://localhost:8080/MusicRecommenderSystem/adminitemsearch?name=" + dataObj.name;
     })
 </script>
 </body>

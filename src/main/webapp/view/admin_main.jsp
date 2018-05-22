@@ -430,7 +430,7 @@
                                                                            href="http://localhost:8080/MusicRecommenderSystem/adminmain">网站性能</a>
                                                                     </li>
                                                                     <li role="presentation"><a href="http://localhost:8080/MusicRecommenderSystem/usermanage">用户管理</a></li>
-                                                                    <li role="presentation"><a href="#">音乐推荐</a>
+                                                                    <li role="presentation"><a href="http://localhost:8080/MusicRecommenderSystem/adminrecommend">音乐推荐</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
