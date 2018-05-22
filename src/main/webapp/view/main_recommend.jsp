@@ -202,7 +202,7 @@
     display:  table-cell;
 ">
                                                             <div id="navCenter" class="navCenter"
-                                                                 style="width: 450px;background:  none;position:  relative;margin:  0;padding:  0;overflow:  hidden;height:  100%;">
+                                                                 style="width: 600px;background:  none;position:  relative;margin:  0;padding:  0;overflow:  hidden;height:  100%;">
                                                                 <div class="itemPrev" style="display: none;"></div>
                                                                 <div class="itemContainer" style="
     position:  absolute;
@@ -284,6 +284,21 @@
     color:  black;
 "><a hidefocus="true" style="outline:none;color:  black;text-decoration:  none;"
      href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0">个人信息</span></a>
+                                                                            </td>
+                                                                            <td class="itemRight"></td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <table title="" class="item itemCol103 itemIndex2"
+                                                                           cellpadding="0" cellspacing="0" colid="103"
+                                                                           style="height: 120px;width: 140px;float: left;text-align: center;">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="itemLeft"></td>
+                                                                            <td class="itemCenter"><a hidefocus="true"
+                                                                                                      style="outline:none;color: black;text-decoration: none"
+                                                                                                      href="http://localhost:8080/MusicRecommenderSystem/upload"><span
+                                                                                    class="itemName0">上传音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>

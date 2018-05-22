@@ -1,7 +1,9 @@
 package com.yan.persist.service;
 
 import com.yan.persist.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,4 +22,6 @@ public interface UserService {
     void changePwd(User user);
 
     ArrayList<User> getAll();
+
+    void upload(String email,MultipartFile multipartFile) throws IOException;
 }

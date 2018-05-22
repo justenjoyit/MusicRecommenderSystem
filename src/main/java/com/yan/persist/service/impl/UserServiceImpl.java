@@ -1,15 +1,23 @@
 package com.yan.persist.service.impl;
 
+import com.yan.crawler.data.User2;
+import com.yan.crawler.data.UserTrack;
+import com.yan.crawler.persist.dao.User2Dao;
+import com.yan.crawler.persist.dao.UserTrackDao;
 import com.yan.exception.MyException;
 import com.yan.persist.dao.UserDao;
 import com.yan.persist.entity.User;
 import com.yan.persist.service.UserService;
 import com.yan.utils.Consts;
 import com.yan.utils.MD5;
+import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,6 +29,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private UserTrackDao userTrackDao;
+    @Autowired
+    private User2Dao user2Dao;
 
     /**
      * 用户注册
@@ -73,6 +85,39 @@ public class UserServiceImpl implements UserService {
     @Override
     public ArrayList<User> getAll() {
         return userDao.getAll();
+    }
+
+    @Override
+    public void upload(String name, MultipartFile multipartFile) throws IOException {
+        CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) multipartFile;
+        DiskFileItem fileItem = (DiskFileItem) commonsMultipartFile.getFileItem();
+        InputStream is = fileItem.getInputStream();
+        InputStreamReader ir = new InputStreamReader(is, "UTF-8");
+        BufferedReader reader = new BufferedReader(ir);
+        //读取文件
+        ArrayList<UserTrack> userTracks = new ArrayList<>();
+        String tmp;
+        while ((tmp = reader.readLine()) != null) {
+            String artist = tmp.split(",")[0];
+            String trackname = tmp.split(",")[1];
+            int duration = Integer.valueOf(tmp.split(",")[2]);
+            UserTrack userTrack = new UserTrack();
+            userTrack.setArtist(artist);
+            userTrack.setTrackname(trackname);
+            userTrack.setDuration(duration);
+            int id = userTrackDao.getTrackId(userTrack);
+            if (id <= 0)
+                throw new MyException(Consts.TRACK_NOT_EXIST, "1");
+            userTrack.setTrackID(id);
+            User2 user2 = user2Dao.getByName(name);
+            if (user2 == null)
+                throw new MyException(Consts.USER_NOT_EXIST, "1");
+            userTrack.setUserID(user2.getId());
+            userTrack.setUsername(user2.getName());
+            userTracks.add(userTrack);
+        }
+        //存入到数据库
+        userTrackDao.save(userTracks);
     }
 
 }

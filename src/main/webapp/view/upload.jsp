@@ -460,17 +460,17 @@
                                                                         <tbody>
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0" style="color: red">个人信息</span></a>
+                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/userinfo"><span class="itemName0">个人信息</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103" id="nav103">
+                                                                    <table title="" class="item itemCol103 itemIndex2" cellpadding="0" cellspacing="0" colid="103">
                                                                         <tbody>
                                                                         <tr>
                                                                             <td class="itemLeft"></td>
-                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/upload"><span class="itemName0" >上传音乐</span></a>
+                                                                            <td class="itemCenter"><a hidefocus="true" style="outline:none;" href="http://localhost:8080/MusicRecommenderSystem/upload"><span class="itemName0" style="color: red">上传音乐</span></a>
                                                                             </td>
                                                                             <td class="itemRight"></td>
                                                                         </tr>
@@ -652,88 +652,11 @@
                                                                                 <div class="formMiddleContent formMiddleContent27 fk-formContentOtherPadding"
                                                                                      tabstyle="0">
                                                                                     <div class="J_memberSignupPanel memberSignupPanel">
-                                                                                        <form action="/reg"
-                                                                                              id="registerForm"
-                                                                                              class="memberSignupContent"
-                                                                                              cellpadding="0"
-                                                                                              cellspacing="0">
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="邮箱">邮箱：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="email"
-                                                                                                           name="邮箱"
-                                                                                                           placeholder="<%=user.getEmail()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft"
-                                                                                                     title="用户名">用户名：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input id="username"
-                                                                                                           name="用户名"
-                                                                                                           placeholder="<%=user.getUsername()%>"
-                                                                                                           class="userAddItem isCheckUAI"
-                                                                                                           type="text"
-                                                                                                           maxlength="50"
-                                                                                                           disabled="disabled">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    修改密码：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="password"
-                                                                                                           id="password"
-                                                                                                           maxlength="50">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="memberSignupItem itemSpace">
-                                                                                                <div class="itemLeft">
-                                                                                                    确认密码：
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <input type="password"
-                                                                                                           id="repwd"
-                                                                                                           maxlength="50">
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    *
-                                                                                                </div>
-                                                                                            </div>
-
-
-                                                                                            <div id="memberSignupButton"
-                                                                                                 class="memberSignupItem_signupButton memberSignupItem_signupButton1">
-                                                                                                <div class="itemLeft">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                                <div class="itemMiddle">
-                                                                                                    <button type="button"
-                                                                                                            class="changePWD">
-                                                                                                        修改密码
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                                <div class="itemRight">
-                                                                                                    &nbsp;
-                                                                                                </div>
-                                                                                            </div>
+                                                                                        <form method="post" action="http://localhost:8080/MusicRecommenderSystem/upload" enctype="multipart/form-data">
+                                                                                            选择一个文件:
+                                                                                            <input type="file" name="file" />
+                                                                                            <br/><br/>
+                                                                                            <input type="submit" value="上传" />
                                                                                         </form>
                                                                                     </div>
                                                                                 </div>

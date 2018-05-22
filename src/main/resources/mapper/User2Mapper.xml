@@ -37,4 +37,10 @@
         SELECT * FROM user2
         WHERE name = #{name}
     </select>
+
+    <select id="getByName" parameterType="String" resultType="User2">
+        SELECT * FROM user2
+        WHERE name = #{name}
+    </select>
+
 </mapper>

@@ -25,4 +25,17 @@
         SELECT * FROM user_track
         WHERE userID = #{userID}
     </select>
+
+    <select id="getTrackId" parameterType="UserTrack" resultType="int">
+        SELECT id FROM track
+        WHERE artist = #{artist} AND name = #{trackname}
+    </select>
+
+    <insert id="save">
+        INSERT IGNORE INTO user_track(userID,username,trackID,artist,trackname,duration)
+        VALUES
+        <foreach collection="usertracks" item="usertrack" index="index" separator=",">
+            (#{usertrack.userID},#{usertrack.username},#{usertrack.trackID},#{usertrack.artist},#{usertrack.trackname},#{usertrack.duration})
+        </foreach>
+    </insert>
 </mapper>

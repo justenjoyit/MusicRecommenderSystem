@@ -7,10 +7,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,24 +21,36 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 展示用户信息界面
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/userinfo", method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated()){
+        if (!currentUser.isAuthenticated()) {
             return "login";
         }
         System.out.println(currentUser.getPrincipal());
-        User user = userService.getUserByEmail((String)currentUser.getPrincipal());
-        request.setAttribute("user",user);
+        User user = userService.getUserByEmail((String) currentUser.getPrincipal());
+        request.setAttribute("user", user);
         return "user_info";
     }
 
-    @RequestMapping(value = "/changepwd",method = RequestMethod.POST)
+    /**
+     * 修改密码
+     *
+     * @param post
+     * @return
+     */
+    @RequestMapping(value = "/changepwd", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult changePwd(@RequestBody User post){
+    public JsonResult changePwd(@RequestBody User post) {
         JsonResult jsonResult = new JsonResult();
         Subject currentUser = SecurityUtils.getSubject();
-        if(!currentUser.isAuthenticated()){
+        if (!currentUser.isAuthenticated()) {
             jsonResult.setErrorCode("1");
             jsonResult.setMessage("用户未登陆");
             return jsonResult;
@@ -48,13 +58,49 @@ public class UserController {
 
         try {
             userService.changePwd(post);
-        }catch (Exception e){
+        } catch (Exception e) {
             jsonResult.setErrorCode("1");
             jsonResult.setMessage(e.getMessage());
             return jsonResult;
         }
         jsonResult.setErrorCode("0");
         jsonResult.setMessage("修改密码成功");
+        return jsonResult;
+    }
+
+    /**
+     * 展示上传文件界面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String upload() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            return "login";
+        }
+        return "upload";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public JsonResult upload(@RequestParam("file") MultipartFile multipartFiles) {
+        JsonResult jsonResult = new JsonResult();
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()) {
+            jsonResult.setErrorCode("1");
+            jsonResult.setMessage("用户未登陆");
+            return jsonResult;
+        }
+        try {
+            userService.upload((String)currentUser.getPrincipal(),multipartFiles);
+        } catch (Exception e) {
+            jsonResult.setErrorCode("1");
+            jsonResult.setMessage(e.getMessage());
+            return jsonResult;
+        }
+
+        jsonResult.setErrorCode("0");
+        jsonResult.setMessage("上传成功");
         return jsonResult;
     }
 }
