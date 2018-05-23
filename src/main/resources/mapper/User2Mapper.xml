@@ -9,23 +9,17 @@
         <result column="realname" property="realname"/>
         <result column="images" property="images"/>
         <result column="url" property="url"/>
-        <result column="age" property="age"/>
-        <result column="gender" property="gender"/>
-        <result column="subscriber" property="subscriber"/>
+        <result column="country" property="country"/>
         <result column="playcount" property="playcount"/>
-        <result column="playlists" property="playlists"/>
-        <result column="bootstrap" property="bootstrap"/>
         <result column="registered" property="registered"/>
-        <result column="alumni" property="alumni"/>
-        <result column="tags" property="tags"/>
     </resultMap>
 
     <insert id="insert" keyProperty="id" useGeneratedKeys="true" keyColumn="id">
         INSERT IGNORE INTO
-        user2(name,realname,images,url,country,age,gender,subscriber,playcount,playlists,bootstrap,registered,alumni)
+        user2(name,realname,images,url,country,playcount,playlists,registered)
         VALUES
         <foreach collection="list" item="user" separator=",">
-            (#{user.name},#{user.realname},#{user.images},#{user.url},#{user.country},#{user.age},#{user.gender},#{user.subscriber},#{user.playcount},#{user.playlists},#{user.bootstrap},#{user.registered},#{user.alumni})
+            (#{user.name},#{user.realname},#{user.images},#{user.url},#{user.country},#{user.playcount},#{user.registered})
         </foreach>
     </insert>
 
@@ -43,4 +37,8 @@
         WHERE name = #{name}
     </select>
 
+    <insert id="insertName" parameterType="String">
+        INSERT INTO user2(name)
+        VALUES (#{name})
+    </insert>
 </mapper>

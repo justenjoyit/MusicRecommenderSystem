@@ -19,4 +19,5 @@ public interface User2Dao {
 
     User2 getByName(String name);
 
+    void insertName(String email);
 }

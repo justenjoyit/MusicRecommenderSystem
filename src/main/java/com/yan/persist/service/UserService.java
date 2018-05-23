@@ -29,4 +29,6 @@ public interface UserService {
     ArrayList<Track> getFavor(String name);
 
     void updateStatusByEmail(String email, int status);
+
+    void transfer(String name);
 }

@@ -52,6 +52,12 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             throw new IllegalArgumentException("用户名或邮箱重复");
         }
+        User2 user2 = new User2();
+        user2.setName(post.getUsername());
+        User2 user22 = user2Dao.getUser2ByName(user2);
+        if (user22 != null) {
+            throw new IllegalArgumentException("用户名或邮箱重复");
+        }
         user = post;
         user.setStatus(0);
         user.setPassword(MD5.md5(user.getPassword()));
@@ -62,6 +68,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 更新状态
+     *
      * @param post
      */
     @Override
@@ -72,6 +79,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 删除用户
+     *
      * @param post
      */
     @Override
@@ -82,6 +90,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 根据name查找用户
+     *
      * @param name
      * @return
      */
@@ -95,6 +104,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 修改密码
+     *
      * @param post
      */
     @Override
@@ -109,6 +119,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 获取所有用户信息
+     *
      * @return
      */
     @Override
@@ -119,6 +130,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 上传文件
+     *
      * @param name
      * @param multipartFile
      * @throws IOException
@@ -159,6 +171,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 获取喜欢歌曲轨道
+     *
      * @param name
      * @return
      */
@@ -182,7 +195,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateStatusByEmail(String email, int status) {
-        userDao.updateStatusByEmail(email,status);
+        userDao.updateStatusByEmail(email, status);
+    }
+
+    @Override
+    public void transfer(String email) {
+        User post = new User();
+        post.setEmail(email);
+        User user = userDao.findUserByUsernameOrEmail(post);
+        if (user != null)
+            user2Dao.insertName(user.getUsername());
     }
 
 }

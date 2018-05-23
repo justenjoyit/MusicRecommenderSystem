@@ -32,12 +32,12 @@ public class MyRecommender {
      * @param user2
      * @return
      */
-    public static double userSimilariy(User2 user1, User2 user2) {
-        //将user1 和user2中的tags抽出来
-        List<Tag> tag1 = JSONArray.parseArray(user1.getTags(), Tag.class);
-        List<Tag> tag2 = JSONArray.parseArray(user2.getTags(), Tag.class);
-        return caculate(tag1, tag2);
-    }
+//    public static double userSimilariy(User2 user1, User2 user2) {
+//        //将user1 和user2中的tags抽出来
+//        List<Tag> tag1 = JSONArray.parseArray(user1.getTags(), Tag.class);
+//        List<Tag> tag2 = JSONArray.parseArray(user2.getTags(), Tag.class);
+//        return caculate(tag1, tag2);
+//    }
 
     /**
      * 计算相似度

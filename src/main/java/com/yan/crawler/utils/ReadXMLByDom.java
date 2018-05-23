@@ -73,36 +73,12 @@ public class ReadXMLByDom {
                             user2.setCountry(content);
                             break;
                         }
-                        case "age": {
-                            user2.setAge(Integer.valueOf(content));
-                            break;
-                        }
-                        case "gender": {
-                            user2.setGender(content);
-                            break;
-                        }
-                        case "subscriber": {
-                            user2.setSubscriber(content);
-                            break;
-                        }
                         case "playcount": {
                             user2.setPlaycount(Integer.valueOf(content));
                             break;
                         }
-                        case "playlists": {
-                            user2.setPlaylists(Integer.valueOf(content));
-                            break;
-                        }
-                        case "bootstrap": {
-                            user2.setBootstrap(Integer.valueOf(content));
-                            break;
-                        }
                         case "registered": {
                             user2.setRegistered(content);
-                            break;
-                        }
-                        case "alumni": {
-                            user2.setAlumni(content);
                             break;
                         }
                     }

@@ -36,6 +36,8 @@ public class EmailController {
         try {
             verifyService.verify(email,code);
             userService.updateStatusByEmail(email,1);
+            //将user数据同步到user2中
+            userService.transfer(email);
         }catch (Exception e){
             jsonResult.setErrorCode("1");
             jsonResult.setMessage(e.getMessage());

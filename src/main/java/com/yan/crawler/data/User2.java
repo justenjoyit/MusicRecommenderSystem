@@ -12,15 +12,8 @@ public class User2 {
     private String images;
     private String url;
     private String country;
-    private int age;
-    private String gender;
-    private String subscriber;
     private int playcount;
-    private int playlists;
-    private int bootstrap;
     private String registered;
-    private String alumni;
-    private String tags;
 
     public int getId() {
         return id;
@@ -70,52 +63,12 @@ public class User2 {
         this.country = country;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public String getSubscriber() {
-        return subscriber;
-    }
-
-    public void setSubscriber(String subscriber) {
-        this.subscriber = subscriber;
-    }
-
     public int getPlaycount() {
         return playcount;
     }
 
     public void setPlaycount(int playcount) {
         this.playcount = playcount;
-    }
-
-    public int getPlaylists() {
-        return playlists;
-    }
-
-    public void setPlaylists(int playlists) {
-        this.playlists = playlists;
-    }
-
-    public int getBootstrap() {
-        return bootstrap;
-    }
-
-    public void setBootstrap(int bootstrap) {
-        this.bootstrap = bootstrap;
     }
 
     public String getRegistered() {
@@ -126,38 +79,17 @@ public class User2 {
         this.registered = registered;
     }
 
-    public String getAlumni() {
-        return alumni;
-    }
-
-    public void setAlumni(String alumni) {
-        this.alumni = alumni;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     @Override
     public String toString() {
         return "User2{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", realname='" + realname + '\'' +
                 ", images='" + images + '\'' +
                 ", url='" + url + '\'' +
                 ", country='" + country + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                ", subscriber='" + subscriber + '\'' +
                 ", playcount=" + playcount +
-                ", playlists=" + playlists +
-                ", bootstrap=" + bootstrap +
                 ", registered='" + registered + '\'' +
-                ", alumni='" + alumni + '\'' +
                 '}';
     }
 }
