@@ -26,4 +26,6 @@ public interface UserDao {
     void updatePwd(User user);
 
     ArrayList<User> getAll();
+
+    void updateStatusByEmail(String email, int status);
 }

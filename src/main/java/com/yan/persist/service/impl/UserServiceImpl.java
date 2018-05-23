@@ -180,4 +180,9 @@ public class UserServiceImpl implements UserService {
         return tracks;
     }
 
+    @Override
+    public void updateStatusByEmail(String email, int status) {
+        userDao.updateStatusByEmail(email,status);
+    }
+
 }

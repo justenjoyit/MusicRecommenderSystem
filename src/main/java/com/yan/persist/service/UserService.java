@@ -27,4 +27,6 @@ public interface UserService {
     void upload(String email, MultipartFile multipartFile) throws IOException;
 
     ArrayList<Track> getFavor(String name);
+
+    void updateStatusByEmail(String email, int status);
 }

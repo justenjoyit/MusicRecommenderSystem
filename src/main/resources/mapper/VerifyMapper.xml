@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yan.persist.dao.VerifyDao">
+    <resultMap id="verifyResult" type="verify">
+        <result property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="created" column="created"/>
+        <result property="expired" column="expired"/>
+        <result property="status" column="status"/>
+        <result property="target" column="target"/>
+        <result property="verify_method" column="verify_method"/>
+    </resultMap>
+
+    <insert id="save" parameterType="verify" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO verify(code,created,expired,status,target,verify_method)
+        VALUES (#{code},#{created},#{expired},#{status},#{target},#{verify_method})
+    </insert>
+
+    <update id="update" parameterType="verify">
+        UPDATE verify
+        SET
+        code = #{code},
+        created = #{created},
+        expired = #{expired},
+        status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findVerifyByMethod" parameterType="String" resultMap="verifyResult">
+        SELECT * FROM verify
+        WHERE verify_method = #{verify_method}
+    </select>
+</mapper>

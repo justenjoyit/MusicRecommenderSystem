@@ -61,4 +61,12 @@
     <select id="getAll" resultMap="userResult">
         SELECT * FROM user
     </select>
+
+    <update id="updateStatusByEmail">
+        UPDATE user
+        SET
+        status = #{param2}
+        WHERE
+        email = #{param1}
+    </update>
 </mapper>
