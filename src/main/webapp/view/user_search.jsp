@@ -944,7 +944,7 @@
 <script>
     $(".changeStatus").click(function () {
         var dataObj = new Object();
-        dataObj.email = $("#email").attr("placeholder");
+        dataObj.username = $("#email").attr("placeholder");
         dataObj.status = $("#status").val();
         $.ajax({
             url: "http://localhost:8080/MusicRecommenderSystem/changeStatus",
@@ -966,8 +966,8 @@
     })
     $("#search2").click(function () {
         var dataObj = new Object();
-        dataObj.email = $("#searchcontent2").val();
-        window.location.href = "http://localhost:8080/MusicRecommenderSystem/changeStatus?email=" + dataObj.email;
+        dataObj.name = $("#searchcontent2").val();
+        window.location.href = "http://localhost:8080/MusicRecommenderSystem/changeStatus?name=" + dataObj.name;
     })
 </script>
 </body>

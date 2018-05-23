@@ -300,7 +300,8 @@
     <div id="memberBar" class="memberBar">
         <div class="right">
             <div style="float:right;">
-                <a class="memberOption memberLogin" href="http://localhost:8080/MusicRecommenderSystem/reg" style="margin-right:10px;">注册</a>
+                <a class="memberOption memberLogin" href="http://localhost:8080/MusicRecommenderSystem/reg"
+                   style="margin-right:10px;">注册</a>
                 <a class="memberOption memberReg" href="http://localhost:8080/MusicRecommenderSystem/login">登录</a>
             </div>
         </div>
@@ -603,7 +604,8 @@
                                                                                 <div class="formBannerOther formBannerOther27">
                                                                                     <div class="formBannerBtn formBannerBtn27">
                                                                                         <span style="_display:inline-block;_position:relative;">
-                                                                                            <a hidefocus="true" class="g_close">
+                                                                                            <a hidefocus="true"
+                                                                                               class="g_close">
                                                                                                 <span class="bannerMoreInnerSpan"
                                                                                                       style="_display:none;">&nbsp;
                                                                                                 </span>
@@ -633,11 +635,11 @@
                                                                                               cellspacing="0">
                                                                                             <div class="memberSignupItem itemSpace">
                                                                                                 <div class="itemLeft"
-                                                                                                     title="邮箱">邮箱：
+                                                                                                     title="用户名">用户名：
                                                                                                 </div>
                                                                                                 <div class="itemMiddle">
                                                                                                     <input id="email"
-                                                                                                           name="邮箱"
+                                                                                                           name="用户名"
                                                                                                            placeholder=""
                                                                                                            class="userAddItem isCheckUAI"
                                                                                                            type="text"
@@ -926,7 +928,7 @@
     $(".login").click(function () {
         var dataObj = new Object();
 
-        dataObj.email = $("#email").val();
+        dataObj.username = $("#email").val();
         dataObj.password = $("#password").val();
         dataObj.role = 1;
         $.ajax({
@@ -939,11 +941,14 @@
             processData: false,
             success: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/adminmain";
+                if (data.errorCode == "0")
+                    window.location.href = "http://localhost:8080/MusicRecommenderSystem/adminmain";
+                else
+                    window.location.href = "http://localhost:8080/MusicRecommenderSystem/adminlogin";
             },
             error: function (data) {
                 alert(data.message);
-                window.location.href="http://localhost:8080/MusicRecommenderSystem/adminlogin";
+                window.location.href = "http://localhost:8080/MusicRecommenderSystem/adminlogin";
             },
         })
     })

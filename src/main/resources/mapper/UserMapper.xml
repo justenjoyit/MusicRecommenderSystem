@@ -34,7 +34,7 @@
 
     <select id="getUser" resultMap="userResult">
         SELECT * FROM user
-        WHERE email = #{param1} AND password = #{param2} AND role = #{param3}
+        WHERE username = #{param1} AND password = #{param2} AND role = #{param3}
     </select>
 
     <update id="updateStatus" parameterType="User">
@@ -47,7 +47,7 @@
 
     <delete id="deleteUser" parameterType="User">
         DELETE FROM user
-        WHERE email = #{email}
+        WHERE username = #{username}
     </delete>
 
     <update id="updatePwd" parameterType="User">

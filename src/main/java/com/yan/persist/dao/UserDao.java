@@ -17,7 +17,7 @@ public interface UserDao {
 
     void updateLastLogin(int id, Date now);
 
-    User getUser(String email, String password, int role);
+    User getUser(String name, String password, int role);
 
     void updateStatus(User user);
 

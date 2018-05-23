@@ -607,9 +607,9 @@
                                                                         <tr>
                                                                                 <% ArrayList<User> users= (ArrayList)request.getAttribute("users");%>
                                                                             <script>
-                                                                                function deleteUser(email) {
+                                                                                function deleteUser(name) {
                                                                                     $.ajax({
-                                                                                        url: "http://localhost:8080/MusicRecommenderSystem/userdelete?email=" + email,
+                                                                                        url: "http://localhost:8080/MusicRecommenderSystem/userdelete?name=" + name,
                                                                                         type: "GET",
                                                                                         cache: false,
                                                                                         processData: false,
@@ -649,12 +649,12 @@
                                                                                         <td style="background-color:#f5b6a2">
                                                                                             <button style="height: 30px;padding:5px;font-size:2px;border-radius: 5px"
                                                                                                     class="glyphicon glyphicon-edit"
-                                                                                                    onclick="window.location.href='http://localhost:8080/MusicRecommenderSystem/changeStatus?email=<%=user.getEmail()%>'">
+                                                                                                    onclick="window.location.href='http://localhost:8080/MusicRecommenderSystem/changeStatus?name=<%=user.getUsername()%>'">
                                                                                                 修改
                                                                                             </button>
                                                                                             <button style="height: 30px;padding:5px;font-size:2px;border-radius: 5px"
                                                                                                     class="glyphicon glyphicon-remove-sign"
-                                                                                                    onclick="deleteUser('<%=user.getEmail()%>');">
+                                                                                                    onclick="deleteUser('<%=user.getUsername()%>');">
                                                                                                 删除
                                                                                             </button>
                                                                                         </td>
@@ -911,8 +911,8 @@
 <script>
     $("#search").click(function () {
         var dataObj = new Object();
-        dataObj.email = $("#searchcontent").val();
-        window.location.href = "http://localhost:8080/MusicRecommenderSystem/changeStatus?email=" + dataObj.email;
+        dataObj.name = $("#searchcontent").val();
+        window.location.href = "http://localhost:8080/MusicRecommenderSystem/changeStatus?name=" + dataObj.name;
     })
 </script>
 </body>

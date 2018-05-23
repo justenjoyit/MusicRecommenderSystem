@@ -60,24 +60,45 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    /**
+     * 更新状态
+     * @param post
+     */
     @Override
+    @Transactional
     public void updateStatus(User post) {
         userDao.updateStatus(post);
     }
 
+    /**
+     * 删除用户
+     * @param post
+     */
     @Override
+    @Transactional
     public void deleteUser(User post) {
         userDao.deleteUser(post);
     }
 
+    /**
+     * 根据name查找用户
+     * @param name
+     * @return
+     */
     @Override
-    public User getUserByEmail(String email) {
+    @Transactional
+    public User getUserByName(String name) {
         User user = new User();
-        user.setEmail(email);
+        user.setUsername(name);
         return userDao.findUserByUsernameOrEmail(user);
     }
 
+    /**
+     * 修改密码
+     * @param post
+     */
     @Override
+    @Transactional
     public void changePwd(User post) {
         User user = userDao.findUserByUsernameOrEmail(post);
         if (user == null)
@@ -86,12 +107,24 @@ public class UserServiceImpl implements UserService {
         userDao.updatePwd(post);
     }
 
+    /**
+     * 获取所有用户信息
+     * @return
+     */
     @Override
+    @Transactional
     public ArrayList<User> getAll() {
         return userDao.getAll();
     }
 
+    /**
+     * 上传文件
+     * @param name
+     * @param multipartFile
+     * @throws IOException
+     */
     @Override
+    @Transactional
     public void upload(String name, MultipartFile multipartFile) throws IOException {
         CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) multipartFile;
         DiskFileItem fileItem = (DiskFileItem) commonsMultipartFile.getFileItem();
@@ -124,7 +157,13 @@ public class UserServiceImpl implements UserService {
         userTrackDao.save(userTracks);
     }
 
+    /**
+     * 获取喜欢歌曲轨道
+     * @param name
+     * @return
+     */
     @Override
+    @Transactional
     public ArrayList<Track> getFavor(String name) {
         User2 user2 = new User2();
         user2.setName(name);

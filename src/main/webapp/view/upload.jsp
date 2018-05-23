@@ -600,14 +600,14 @@
                                                                                         <td class="titleCenter titleCenter27"
                                                                                             valign="top">
                                                                                             <div class="titleText titleText27">
-                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">个人信息</span>
+                                                                                                <span class="bannerNormalTitle fk_mainTitle mainTitle mainTitle27">上传音乐</span>
                                                                                                 <div class="bannerTextOutWrap j_doubleTitleSkin">
                                                                                                     <span class="bannerTextInnerWrap"><span
                                                                                                             class="doubleTitleWrap doubleTitleWrap27"><p
                                                                                                             class="mainTitleWrap"><span
                                                                                                             class="mainTitle_fontIcon "
                                                                                                             style=""></span><span
-                                                                                                            class="fk_mainTitle mainTitle mainTitle27">个人信息</span></p><p
+                                                                                                            class="fk_mainTitle mainTitle mainTitle27">上传音乐</span></p><p
                                                                                                             class="subTitleWrap"><span
                                                                                                             class="subTitleLineTop dividingLine dividingLine27"></span><span
                                                                                                             class="subTitleText fk_auxiliaryTitle auxiliaryTitle auxiliaryTitle27">副标题</span><span

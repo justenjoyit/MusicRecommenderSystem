@@ -35,7 +35,7 @@ public class MyRealm extends AuthorizingRealm {
         User currentUser = JSONObject.toJavaObject(JSON.parseObject((String)test),User.class);
         String password = String.valueOf(((UsernamePasswordToken) authenticationToken).getPassword());
         User user;
-        user = userDao.getUser(currentUser.getEmail(), password, currentUser.getRole());
+        user = userDao.getUser(currentUser.getUsername(), password, currentUser.getRole());
 
 
         if (user == null)

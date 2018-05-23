@@ -8,6 +8,7 @@ import com.yan.hadoop.UserCF.UserCFJobRunner;
 import com.yan.persist.service.UserCF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -27,6 +28,7 @@ public class UserCFImpl implements UserCF {
     private User2Dao user2Dao;
 
     @Override
+    @Transactional
     public List<Track> getUserCF(User2 post) throws IOException {
         //从数据库中找到该用户信息
         User2 user2 = user2Dao.getUser2ByName(post);

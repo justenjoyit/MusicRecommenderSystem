@@ -97,11 +97,11 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/changeStatus", method = RequestMethod.GET)
-    public String userManage(String email, HttpServletRequest request) {
+    public String userManage(String name, HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated())
             return "admin_login";
-        User user = userService.getUserByEmail(email);
+        User user = userService.getUserByName(name);
         request.setAttribute("user", user);
         return "user_search";
     }
@@ -164,12 +164,12 @@ public class AdminController {
 
     /**
      * 删除用户
-     * @param email
+     * @param name
      * @return
      */
     @RequestMapping(value = "/userdelete", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult deleteUser(String email) {
+    public JsonResult deleteUser(String name) {
         JsonResult jsonResult = new JsonResult();
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
@@ -179,7 +179,7 @@ public class AdminController {
         }
         try {
             User post = new User();
-            post.setEmail(email);
+            post.setUsername(name);
             userService.deleteUser(post);
             jsonResult.setErrorCode("0");
             jsonResult.setMessage("删除成功");

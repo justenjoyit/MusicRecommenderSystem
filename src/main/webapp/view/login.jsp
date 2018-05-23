@@ -633,11 +633,11 @@
                                                                                               cellspacing="0">
                                                                                             <div class="memberSignupItem itemSpace">
                                                                                                 <div class="itemLeft"
-                                                                                                     title="邮箱">邮箱：
+                                                                                                     title="用户名">用户名：
                                                                                                 </div>
                                                                                                 <div class="itemMiddle">
                                                                                                     <input id="email"
-                                                                                                           name="邮箱"
+                                                                                                           name="用户名"
                                                                                                            placeholder=""
                                                                                                            class="userAddItem isCheckUAI"
                                                                                                            type="text"
@@ -926,7 +926,7 @@
     $(".login").click(function () {
         var dataObj = new Object();
 
-        dataObj.email = $("#email").val();
+        dataObj.username = $("#email").val();
         dataObj.password = $("#password").val();
         dataObj.role = 0;
         $.ajax({

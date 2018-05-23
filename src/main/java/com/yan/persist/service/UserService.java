@@ -18,7 +18,7 @@ public interface UserService {
 
     void deleteUser(User post);
 
-    User getUserByEmail(String email);
+    User getUserByName(String name);
 
     void changePwd(User user);
 

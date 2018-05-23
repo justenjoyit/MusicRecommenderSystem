@@ -36,7 +36,7 @@ public class UserController {
             return "login";
         }
         System.out.println(currentUser.getPrincipal());
-        User user = userService.getUserByEmail((String) currentUser.getPrincipal());
+        User user = userService.getUserByName((String) currentUser.getPrincipal());
         request.setAttribute("user", user);
         return "user_info";
     }
