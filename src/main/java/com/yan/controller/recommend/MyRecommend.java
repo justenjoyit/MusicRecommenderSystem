@@ -28,9 +28,9 @@ import java.util.List;
 @Controller
 public class MyRecommend {
     //判断是否需要重新计算
-    protected static volatile boolean caculate_flag = true;
-    protected static volatile boolean userCF_flag = true;
-    protected static volatile boolean itemCF_flag = true;
+    public static volatile boolean caculate_flag = false;
+    private static volatile boolean userCF_flag = false;
+    private static volatile boolean itemCF_flag = false;
 
     @Autowired
     private UserCF userCF;
@@ -48,22 +48,24 @@ public class MyRecommend {
     }
 
     @RequestMapping(value = "/showUserCF", method = RequestMethod.GET)
-//    @ResponseBody
     public String userCF(HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             return "login";
         }
-//        JsonResult jsonResult = new JsonResult();
         List<Track> tracks;
         try {
             //首先判断是否需要重新计算基于用户的推荐列表
-//            if (caculate_flag) {
-//                score.caculate();
-//                caculate_flag = false;
-//            }
-//            if (userCF_flag)
-//                UserCFJobRunner.run();
+            if (caculate_flag) {
+                score.caculate();
+                caculate_flag = false;
+                userCF_flag = true;
+                itemCF_flag = true;
+            }
+            if (userCF_flag) {
+                UserCFJobRunner.run();
+                userCF_flag = false;
+            }
 
             User2 user2 = new User2();
             user2.setName((String) currentUser.getPrincipal());
@@ -71,33 +73,29 @@ public class MyRecommend {
             tracks = userCF.getUserCF(user2);
             request.setAttribute("recommend", tracks);
         } catch (Exception e) {
-//            jsonResult.setErrorCode("1");
-//            jsonResult.setMessage(e.getMessage());
-//            return jsonResult;
         }
-//        jsonResult.setErrorCode("0");
-//        jsonResult.setData(tracks);
-//        return jsonResult;
         return "recommend";
     }
 
     @RequestMapping(value = "/recommendsearch", method = RequestMethod.GET)
-//    @ResponseBody
     public String userCF(String name, HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             return "login";
         }
-//        JsonResult jsonResult = new JsonResult();
         List<Track> tracks;
         try {
             //首先判断是否需要重新计算基于用户的推荐列表
-//            if (caculate_flag) {
-//                score.caculate();
-//                caculate_flag = false;
-//            }
-//            if (userCF_flag)
-//                UserCFJobRunner.run();
+            if (caculate_flag) {
+                score.caculate();
+                caculate_flag = false;
+                userCF_flag = true;
+                itemCF_flag = true;
+            }
+            if (userCF_flag) {
+                UserCFJobRunner.run();
+                userCF_flag = false;
+            }
 
             User2 user2 = new User2();
             user2.setName(name);
@@ -105,33 +103,29 @@ public class MyRecommend {
             tracks = userCF.getUserCF(user2);
             request.setAttribute("recommend", tracks);
         } catch (Exception e) {
-//            jsonResult.setErrorCode("1");
-//            jsonResult.setMessage(e.getMessage());
-//            return jsonResult;
         }
-//        jsonResult.setErrorCode("0");
-//        jsonResult.setData(tracks);
-//        return jsonResult;
         return "admin_userCF_recommend";
     }
 
     @RequestMapping(value = "/showItemCF", method = RequestMethod.GET)
-//    @ResponseBody
     public String itemCF(HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             return "login";
         }
-//        JsonResult jsonResult = new JsonResult();
         List<Track> tracks;
         try {
             //首先判断是否需要重新计算基于用户的推荐列表
-//            if (caculate_flag) {
-//                score.caculate();
-//                caculate_flag = false;
-//            }
-//            if (itemCF_flag)
-//                ItemCFJobRunner.run();
+            if (caculate_flag) {
+                score.caculate();
+                caculate_flag = false;
+                userCF_flag = true;
+                itemCF_flag = true;
+            }
+            if (itemCF_flag) {
+                ItemCFJobRunner.run();
+                itemCF_flag = false;
+            }
 
             User2 user2 = new User2();
             user2.setName((String) currentUser.getPrincipal());
@@ -140,33 +134,29 @@ public class MyRecommend {
             request.setAttribute("recommend", tracks);
 
         } catch (Exception e) {
-//            jsonResult.setErrorCode("1");
-//            jsonResult.setMessage(e.getMessage());
-//            return jsonResult;
         }
-//        jsonResult.setErrorCode("0");
-//        jsonResult.setData(tracks);
-//        return jsonResult;
         return "recommend";
     }
 
     @RequestMapping(value = "/adminitemsearch", method = RequestMethod.GET)
-//    @ResponseBody
-    public String itemCF(String name,HttpServletRequest request) {
+    public String itemCF(String name, HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
         if (!currentUser.isAuthenticated()) {
             return "login";
         }
-//        JsonResult jsonResult = new JsonResult();
         List<Track> tracks;
         try {
             //首先判断是否需要重新计算基于用户的推荐列表
-//            if (caculate_flag) {
-//                score.caculate();
-//                caculate_flag = false;
-//            }
-//            if (itemCF_flag)
-//                ItemCFJobRunner.run();
+            if (caculate_flag) {
+                score.caculate();
+                caculate_flag = false;
+                userCF_flag = true;
+                itemCF_flag = true;
+            }
+            if (itemCF_flag) {
+                ItemCFJobRunner.run();
+                itemCF_flag = false;
+            }
 
             User2 user2 = new User2();
             user2.setName(name);
@@ -175,31 +165,25 @@ public class MyRecommend {
             request.setAttribute("recommend", tracks);
 
         } catch (Exception e) {
-//            jsonResult.setErrorCode("1");
-//            jsonResult.setMessage(e.getMessage());
-//            return jsonResult;
         }
-//        jsonResult.setErrorCode("0");
-//        jsonResult.setData(tracks);
-//        return jsonResult;
         return "admin_itemCF_recommend";
     }
 
 
-    @RequestMapping(value = "/recommend1", method = RequestMethod.GET)
-    public String recommend(HttpServletRequest request, HttpServletResponse response) {
-        List<Track> tracks = new ArrayList<>();
-        Track track1 = new Track();
-        track1.setArtist("artist1");
-        track1.setName("name1");
-        track1.setUrl("www.url1.com");
-        Track track2 = new Track();
-        track2.setArtist("artist2");
-        track2.setName("name2");
-        track2.setUrl("www.url2.com");
-        tracks.add(track1);
-        tracks.add(track2);
-        request.setAttribute("recommend", tracks);
-        return "recommend";
-    }
+//    @RequestMapping(value = "/recommend1", method = RequestMethod.GET)
+//    public String recommend(HttpServletRequest request, HttpServletResponse response) {
+//        List<Track> tracks = new ArrayList<>();
+//        Track track1 = new Track();
+//        track1.setArtist("artist1");
+//        track1.setName("name1");
+//        track1.setUrl("www.url1.com");
+//        Track track2 = new Track();
+//        track2.setArtist("artist2");
+//        track2.setName("name2");
+//        track2.setUrl("www.url2.com");
+//        tracks.add(track1);
+//        tracks.add(track2);
+//        request.setAttribute("recommend", tracks);
+//        return "recommend";
+//    }
 }

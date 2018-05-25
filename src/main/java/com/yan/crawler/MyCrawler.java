@@ -1,6 +1,7 @@
 package com.yan.crawler;
 
 import com.alibaba.fastjson.JSONArray;
+import com.yan.controller.recommend.MyRecommend;
 import com.yan.crawler.data.Tag;
 import com.yan.crawler.data.Track;
 import com.yan.crawler.data.User2;
@@ -116,7 +117,8 @@ public class MyCrawler {
         List<User2> user2List = ReadXMLByDom.getUsers(result);
         //保存到user2
         if (user2List != null && user2List.size() != 0)
-        user2Dao.insert(user2List);
+            user2Dao.insert(user2List);
+        MyRecommend.caculate_flag = true;
     }
 
     public void getTopTrack(User2 user2) throws IOException, SAXException {

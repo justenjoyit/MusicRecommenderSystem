@@ -1,5 +1,6 @@
 package com.yan.persist.service.impl;
 
+import com.yan.controller.recommend.MyRecommend;
 import com.yan.crawler.data.Track;
 import com.yan.crawler.data.User2;
 import com.yan.crawler.data.UserTrack;
@@ -203,8 +204,10 @@ public class UserServiceImpl implements UserService {
         User post = new User();
         post.setEmail(email);
         User user = userDao.findUserByUsernameOrEmail(post);
-        if (user != null)
+        if (user != null) {
             user2Dao.insertName(user.getUsername());
+            MyRecommend.caculate_flag = true;
+        }
     }
 
 }
